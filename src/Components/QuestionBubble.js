@@ -9,7 +9,7 @@ import { Entypo, EvilIcons } from '@expo/vector-icons';
 
 
 const QuestionBubble = (props) => {
-    const {color, category, question, edit} = props
+    const {color, category, question, edit, deleteOnPress} = props
 
     if (!edit) { 
         return(
@@ -38,11 +38,12 @@ const QuestionBubble = (props) => {
             my='1'
             h='32' 
             align='center'
-            justify='space-evenly'>
+            justify='space-evenly'
+        >
             
             <Flex direction='column' justify='center'>
                 <IconButton
-                icon={<Icon as={EvilIcons} name="navicon" onPress={() => onPress()}/>}
+                icon={<Icon as={EvilIcons} name="navicon"/>}
                 />
             </Flex>
             
@@ -55,10 +56,14 @@ const QuestionBubble = (props) => {
 
             <Flex direction='column' justify='flex-start' h="100%">
                 <IconButton
-                    icon={<Icon as={Entypo} name="cross" />}
+                    icon={<Icon as={Entypo} 
+                                name="cross" 
+                                onPress={() => {deleteOnPress()}}/>}
+                    
                 />
             </Flex>
-        </Flex>)}
+        </Flex>
+        )}
 
 }
 

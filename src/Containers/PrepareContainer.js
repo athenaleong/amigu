@@ -7,7 +7,8 @@ import {
 } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context";
 import QuestionBubble from "@/Components/QuestionBubble";
-import EditQuestionBubble from "@/Components/EditQuestionBubble";
+import AddQuestionBubble from "@/Components/AddQuestionBubble";
+
 
 import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
@@ -29,25 +30,31 @@ const PrepareContainer = (props) => {
         setEdit(!edit)
     }
 
-    // const chevronOnPress = (moveFront, currIndx) => {
-    //     if (moveFront) {
-    //         const temp = questions[currIndx]
-    //         let newQ = [...questions]
-    //         newQ.splice(currIndx, 1)
-    //         newQ.splice(currIndx - 1, 0, temp)
-    //         setQuestions(newQ)
-    //     }
-    //     else {
-    //         const temp = questions[currIndx]
-    //         let newQ = [...questions]
-    //         newQ.splice(currIndx, 1)
-    //         newQ.splice(currIndx + 1, 0, temp)
-    //         setQuestions(newQ)
-    //     }
+    const deleteOnPress = (currIndx) => {
+        console.log('deletePressed', currIndx)
+        let newQ = [...questions]
+        newQ.splice(currIndx, 1)
+        setDraftQuestions(newQ)
+    }
 
-    // }
+    const cancelOnPress = () => {
+        setDraftQuestions(questions)
+        setEdit(false)
+    }
 
-    const renderEdit = ({item, drag}) => {
+    const saveOnPress = () => {
+        setQuestions(questions)
+        //TODO: WRITE TO DB
+        setEdit(false)
+    }
+
+    const selectQuestion = () => {
+        
+
+    }
+
+
+    const renderEdit = ({item, drag, index}) => {
         return (
             <ScaleDecorator>
                 <TouchableOpacity 
@@ -58,43 +65,54 @@ const PrepareContainer = (props) => {
                         question={item.question} 
                         category={item.category}
                         edit={edit}
+                        deleteOnPress={() => {deleteOnPress(index)}}
                     />
                </TouchableOpacity>
             </ScaleDecorator>
         )
     } 
-
-
     return (
         <SafeAreaView>
-            <Button onPress={onPress}>Test</Button>
-            <Flex direction='column' 
-                justify="center"
-                p='6'
-            >
-                <Text color='black' variant='title'>
-                    Next Adventure
-                </Text>
-                <Text color='black' variant='subtitle'>
-                    Questions are curated based on Hugo's age and the focus area you have identified
-                </Text>
+                <Flex direction='column' 
+                    justify="center"
+                    p='6'
+                    pb='4'
+                >
                 <DraggableFlatList
+                    ListHeaderComponent={() => (
+                        <>
+                        <Button onPress={onPress}>Back</Button>
+                        <Text color='black' variant='title'>
+                            Next Adventure
+                        </Text>
+                        <Text color='black' variant='subtitle'>
+                            Questions are curated based on Hugo's age and the focus area you have identified
+                        </Text>    
+                        </> 
+                    )}
                     data={draftQuestions}
                     onDragEnd={({data}) => setDraftQuestions(data)}
                     renderItem={renderEdit}
                     keyExtractor={(item, index) => String(index)}
+                    nestedScrollEnabled={true}
+                    ListFooterComponent={() =>(
+                        <>
+                        {!edit &&
+                            <Button bg="teal.400" onPress={editOnPress}>Edit</Button>
+                        }
+                        {edit &&
+                        <>
+                            <AddQuestionBubble/>
+                            <Flex direction='row' justify='space-evenly'>
+                                <Button onPress={cancelOnPress}>Cancel</Button>
+                                <Button onPress={saveOnPress}>Save</Button>
+                            </Flex>
+                        </>
+                        }
+                        </>
+                    )}
                 /> 
-                {!edit &&
-                    <Button bg="teal.400" onPress={editOnPress}>Edit</Button>
-                }
-                {edit &&
-                    <Flex direction='row' justify='space-evenly'>
-                        <Button onPress={editOnPress}>Cancel</Button>
-                        <Button>Save</Button>
-                    </Flex>
-                }
-
-            </Flex>
+                </Flex>
         </SafeAreaView>
     )
 
