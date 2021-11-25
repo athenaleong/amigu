@@ -5,6 +5,8 @@ import {NavigationContainer} from '@react-navigation/native'
 import MainNavigator from '@/Navigators/Main'
 import { navigationRef } from './utils'
 import PrepareContainer from '@/Containers/PrepareContainer'
+import QuestionContainer from '@/Containers/QuestionContainer'
+
 
 
 const Stack = createStackNavigator()
