@@ -12,24 +12,31 @@ import {
   VStack,
   Code,
   Button,
+  Container,
 } from "native-base";
+import Action from '@/Components/Action/action'
+import { SafeAreaView } from "react-native-safe-area-context";
+import FocusAreaContainer from "./FocusAreaContainer";
 
 const HomeContainer = () => {
+    const topMargin = 6
     return (
-        <Center
-            _dark={{ bg: "blueGray.900" }}
-            _light={{ bg: "blueGray.50" }}
-            px={4}
-            flex={1}
-        >
-            <VStack space={5} alighnItems = "center">
-                <Text>Hello</Text>
-                <Text>World</Text>
-            </VStack>
-        </Center>
+      <SafeAreaView>
+          <VStack alignItems="center">
+
+            <HStack>
+              <Text color="black">3</Text>
+              <Text color="black">Chat in 2 days</Text>
+            </HStack>
+
+            <Action title={"Prepare Questions"} subtitle={'Make changes to curated questions or add your own'}></Action>
+
+            <FocusAreaContainer></FocusAreaContainer>
+            
+          </VStack>
+      </SafeAreaView>
     )
 }
-
 
 
 export default HomeContainer
