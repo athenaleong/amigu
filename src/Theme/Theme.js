@@ -14,6 +14,11 @@ const Theme = extendTheme({
                     fontWeight:"medium",
                     fontSize:"sm",
                     textAlign:"center"
+                },
+                subtitleL: {
+                    fontWeight:"medium",
+                    fontSize:"lg",
+                    textAlign:"center"
                 }
             }
         }

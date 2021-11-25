@@ -1,0 +1,44 @@
+{
+    "question":[
+        {
+            "question": "What is the funniest thing you saw this week?",
+            "color":"indigo.200",
+            "category":"fun"
+        },
+        {
+            "question": "What are three things you are grateful for",
+            "color":"teal.200",
+            "category":"gratitude"
+        },
+        {
+            "question": "If you had your own airplane, where would you fly to?",
+            "color":"emerald.200",
+            "category":"imagination"
+        },
+        {
+            "question": "If you had your own airplane, where would you fly to?",
+            "color":"cyan.200",
+            "category":"imagination"
+        },
+        {
+            "question": "What is the funniest thing you saw this week?",
+            "color":"indigo.200",
+            "category":"fun"
+        },
+        {
+            "question": "What are three things you are grateful for",
+            "color":"teal.200",
+            "category":"gratitude"
+        },
+        {
+            "question": "If you had your own airplane, where would you fly to?",
+            "color":"emerald.200",
+            "category":"imagination"
+        },
+        {
+            "question": "If you had your own airplane, where would you fly to?",
+            "color":"cyan.200",
+            "category":"imagination"
+        }
+    ]
+}
