@@ -23,10 +23,10 @@ const EditQuestionBubble = (props) => {
             
             <Flex direction='column' justify='space-evenly'>
                 <IconButton
-                icon={<Icon as={Entypo} name="chevron-up" onPress={onPress(true)}/>}
+                icon={<Icon as={Entypo} name="chevron-up" onPress={() => onPress(true)}/>}
                 />
                 <IconButton
-                icon={<Icon as={Entypo} name="chevron-down" onPress={onPress(false)}/>}
+                icon={<Icon as={Entypo} name="chevron-down" onPress={() => onPress(false)}/>}
                 />
             </Flex>
             

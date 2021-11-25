@@ -13,8 +13,11 @@ import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
 const PrepareContainer = (props) => {
 
+    //Progranmmers note, questions is currently not populating. half way through programming for up and down button
+
     const [edit, setEdit] = useState(false);
-    const [questions, setQuestions] = useState(data.question)
+    const [questions, setQuestions] = useState(data.question);
+    const [draftQuestions, setDraftQuestions] = useState(data.question);
 
     const onPress = () => {
         navigateGoBack()
@@ -26,17 +29,17 @@ const PrepareContainer = (props) => {
     const chevronOnPress = (moveFront, currIndx) => {
         if (moveFront) {
             const temp = questions[currIndx]
-            questions = questions.splice(currIndx, 1)
-            questions = questions.splice(currIndx - 1, 0, temp)
-            setQuestions(questions)
-            console.log(moveFront, questions)
+            let newQ = [...questions]
+            newQ.splice(currIndx, 1)
+            newQ.splice(currIndx - 1, 0, temp)
+            setQuestions(newQ)
         }
         else {
             const temp = questions[currIndx]
-            questions = questions.splice(currIndx, 1)
-            questions = questions.splice(currIndx, 0, temp)
-            setQuestions(questions)
-            console.log(moveFront, questions)
+            let newQ = [...questions]
+            newQ.splice(currIndx, 1)
+            newQ.splice(currIndx + 1, 0, temp)
+            setQuestions(newQ)
         }
 
     }
@@ -64,7 +67,7 @@ const PrepareContainer = (props) => {
                                         color={q.color} 
                                         question={q.question} 
                                         category={q.category}
-                                        onPress={(moveFront) => chevronOnPress(moveFront, indx)}
+                                        onPress={moveFront => chevronOnPress(moveFront, indx)}
                     />
                 )}
                 {!edit &&
