@@ -5,6 +5,8 @@ import {NavigationContainer} from '@react-navigation/native'
 import MainNavigator from '@/Navigators/Main'
 import { navigationRef } from './utils'
 import PrepareContainer from '@/Containers/PrepareContainer'
+import QuestionContainer from '@/Containers/QuestionContainer'
+
 
 
 const Stack = createStackNavigator()
@@ -18,6 +20,7 @@ const ApplicationNavigator = () => {
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
                         <Stack.Screen name="Main" component={MainNavigator} />
                         <Stack.Screen  name="Prepare" component={PrepareContainer}/>
+                        <Stack.Screen  name="Question" component={QuestionContainer}/>
                     </Stack.Navigator>
                 </NavigationContainer>
         </View>

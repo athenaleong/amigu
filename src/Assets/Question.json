@@ -2,7 +2,7 @@
     "question":[
         {
             "question": "What is the funniest thing you saw this week?",
-            "color":"indigo.200",
+            "color":"red.200",
             "category":"fun"
         },
         {

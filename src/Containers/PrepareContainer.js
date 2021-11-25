@@ -14,10 +14,20 @@ import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
 import DraggableFlatList, {ScaleDecorator} from "react-native-draggable-flatlist";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { navigate } from "@/Navigators/utils";
+
 
 const PrepareContainer = (props) => {
 
     //Progranmmers note, questions is currently not populating. half way through programming for up and down button
+    const {route} = props
+    const {params} = route
+
+    useEffect(() => {
+        if (params){
+            setDraftQuestions([...draftQuestions, params]) 
+        }
+    }, [params])
 
     const [edit, setEdit] = useState(false);
     const [questions, setQuestions] = useState(data.question);
@@ -31,7 +41,6 @@ const PrepareContainer = (props) => {
     }
 
     const deleteOnPress = (currIndx) => {
-        console.log('deletePressed', currIndx)
         let newQ = [...questions]
         newQ.splice(currIndx, 1)
         setDraftQuestions(newQ)
@@ -48,8 +57,8 @@ const PrepareContainer = (props) => {
         setEdit(false)
     }
 
-    const selectQuestion = () => {
-        
+    const addOnPress = () => {
+        navigate('Question')
 
     }
 
@@ -90,11 +99,13 @@ const PrepareContainer = (props) => {
                         </Text>    
                         </> 
                     )}
+
                     data={draftQuestions}
                     onDragEnd={({data}) => setDraftQuestions(data)}
                     renderItem={renderEdit}
                     keyExtractor={(item, index) => String(index)}
                     nestedScrollEnabled={true}
+                    
                     ListFooterComponent={() =>(
                         <>
                         {!edit &&
@@ -102,7 +113,7 @@ const PrepareContainer = (props) => {
                         }
                         {edit &&
                         <>
-                            <AddQuestionBubble/>
+                            <AddQuestionBubble onPress={addOnPress}/>
                             <Flex direction='row' justify='space-evenly'>
                                 <Button onPress={cancelOnPress}>Cancel</Button>
                                 <Button onPress={saveOnPress}>Save</Button>
