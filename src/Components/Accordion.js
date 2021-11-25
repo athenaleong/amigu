@@ -7,13 +7,13 @@ import {
 import * as data from '@/Assets/Bank'
 import { TouchableOpacity } from 'react-native';
 
-const AccordionView = () => {
+const AccordionView = (props) => {
+    const {questionOnPress} = props
     const [activeSections, setActiveSections]= useState([])
     const category = data.questions
 
     const sectionOnPress = (category) => {
         if (activeSections.includes(category)) {
-            console.log('a')
             const index = activeSections.indexOf(category);
             if (index > -1) {
                 const temp = [...activeSections]
@@ -21,7 +21,6 @@ const AccordionView = () => {
                 setActiveSections(temp)
             }
         } else{
-            console.log('b')
             setActiveSections([...activeSections, category])
         }
     }
@@ -40,13 +39,18 @@ const AccordionView = () => {
                         { 
                             activeSections.includes(index1) && e.question.map((q,index2) => {
                                 return(
-                                    <Flex 
+                                    <TouchableOpacity 
                                         key={String(index1) + '_' + String(index2)}
-                                        h ='16'
-                                        justify='center'
+                                        onPress={() => questionOnPress(q)}
                                     >
-                                        <Text color='black' variant='subtitle'>{q.question}</Text>
-                                    </Flex>
+                                        <Flex 
+                                            h ='16'
+                                            justify='center'
+                                            bg={q.color}
+                                        >
+                                            <Text color='black' variant='subtitle'>{q.question}</Text>
+                                        </Flex>
+                                    </TouchableOpacity>
                                 )
                             })
                         }
