@@ -8,14 +8,18 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import QuestionBubble from "../Components/QuestionBubble";
 import * as data from '@/Assets/Question.json'
-
+import { navigateGoBack } from "@/Navigators/utils";
 const PrepareContainer = (props) => {
 
     const questions = data.question;
+    const onPress = () =>{
+        navigateGoBack()
+    }
 
     return (
         <SafeAreaView>
             <ScrollView>
+            <Button onPress={onPress}>Test</Button>
             <Flex direction='column' 
                 justify="center"
                 p='6'>

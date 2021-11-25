@@ -12,9 +12,9 @@ import {
 import {AntDesign} from '@expo/vector-icons'
 
 const Action = (props) => {
-    const {title, subtitle} = props
+    const {title, subtitle, onPress} = props
     return (
-        <Pressable>
+        <Pressable onPress={onPress}>
             <Flex
                 direction="column"
                 align="center"
