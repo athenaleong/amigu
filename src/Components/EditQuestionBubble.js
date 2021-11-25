@@ -8,7 +8,7 @@ import {
 import { Entypo } from '@expo/vector-icons';
 
 const EditQuestionBubble = (props) => {
-    const {color, category, question, onPress} = props
+    const {color, category, question} = props
 
     return (
         <Flex 
@@ -21,12 +21,9 @@ const EditQuestionBubble = (props) => {
             align='center'
             justify='space-evenly'>
             
-            <Flex direction='column' justify='space-evenly'>
+            <Flex direction='column' justify='center'>
                 <IconButton
-                icon={<Icon as={Entypo} name="chevron-up" onPress={() => onPress(true)}/>}
-                />
-                <IconButton
-                icon={<Icon as={Entypo} name="chevron-down" onPress={() => onPress(false)}/>}
+                icon={<Icon as={Entypo} name="chevron-up" onPress={() => onPress()}/>}
                 />
             </Flex>
             

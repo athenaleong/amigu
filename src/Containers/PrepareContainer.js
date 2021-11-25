@@ -11,6 +11,9 @@ import EditQuestionBubble from "@/Components/EditQuestionBubble";
 
 import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
+import DraggableFlatList, {ScaleDecorator} from "react-native-draggable-flatlist";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
 const PrepareContainer = (props) => {
 
     //Progranmmers note, questions is currently not populating. half way through programming for up and down button
@@ -26,28 +29,44 @@ const PrepareContainer = (props) => {
         setEdit(!edit)
     }
 
-    const chevronOnPress = (moveFront, currIndx) => {
-        if (moveFront) {
-            const temp = questions[currIndx]
-            let newQ = [...questions]
-            newQ.splice(currIndx, 1)
-            newQ.splice(currIndx - 1, 0, temp)
-            setQuestions(newQ)
-        }
-        else {
-            const temp = questions[currIndx]
-            let newQ = [...questions]
-            newQ.splice(currIndx, 1)
-            newQ.splice(currIndx + 1, 0, temp)
-            setQuestions(newQ)
-        }
+    // const chevronOnPress = (moveFront, currIndx) => {
+    //     if (moveFront) {
+    //         const temp = questions[currIndx]
+    //         let newQ = [...questions]
+    //         newQ.splice(currIndx, 1)
+    //         newQ.splice(currIndx - 1, 0, temp)
+    //         setQuestions(newQ)
+    //     }
+    //     else {
+    //         const temp = questions[currIndx]
+    //         let newQ = [...questions]
+    //         newQ.splice(currIndx, 1)
+    //         newQ.splice(currIndx + 1, 0, temp)
+    //         setQuestions(newQ)
+    //     }
 
-    }
+    // }
+
+    const renderEdit = ({item, drag}) => {
+        return (
+            <ScaleDecorator>
+                <TouchableOpacity 
+                    onLongPress={drag}
+                    disabled={!edit}>
+                    <QuestionBubble 
+                        color={item.color} 
+                        question={item.question} 
+                        category={item.category}
+                        edit={edit}
+                    />
+               </TouchableOpacity>
+            </ScaleDecorator>
+        )
+    } 
 
 
     return (
         <SafeAreaView>
-            <ScrollView>
             <Button onPress={onPress}>Test</Button>
             <Flex direction='column' 
                 justify="center"
@@ -59,17 +78,12 @@ const PrepareContainer = (props) => {
                 <Text color='black' variant='subtitle'>
                     Questions are curated based on Hugo's age and the focus area you have identified
                 </Text>
-                {!edit && questions.map((q, indx) =>         
-                    <QuestionBubble key={indx} color={q.color} question={q.question} category={q.category}/>
-                )}
-                {edit && questions.map((q, indx) =>
-                    <EditQuestionBubble key={indx} 
-                                        color={q.color} 
-                                        question={q.question} 
-                                        category={q.category}
-                                        onPress={moveFront => chevronOnPress(moveFront, indx)}
-                    />
-                )}
+                <DraggableFlatList
+                    data={draftQuestions}
+                    onDragEnd={({data}) => setDraftQuestions(data)}
+                    renderItem={renderEdit}
+                    keyExtractor={(item, index) => String(index)}
+                /> 
                 {!edit &&
                     <Button bg="teal.400" onPress={editOnPress}>Edit</Button>
                 }
@@ -81,7 +95,6 @@ const PrepareContainer = (props) => {
                 }
 
             </Flex>
-            </ScrollView>
         </SafeAreaView>
     )
 
