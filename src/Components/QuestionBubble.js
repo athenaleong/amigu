@@ -57,9 +57,8 @@ const QuestionBubble = (props) => {
             <Flex direction='column' justify='flex-start' h="100%">
                 <IconButton
                     icon={<Icon as={Entypo} 
-                                name="cross" 
-                                onPress={() => {deleteOnPress()}}/>}
-                    
+                                name="cross"/>}
+                    onPress={deleteOnPress}
                 />
             </Flex>
         </Flex>

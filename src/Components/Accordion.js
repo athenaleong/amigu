@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Accordion from 'react-native-collapsible/Accordion';
 import {
     Text,
     Flex
 } from 'native-base'
-import * as data from '@/Assets/Bank'
+// Pull from backend 
+import * as data from '@/Assets/Bank' 
 import { TouchableOpacity } from 'react-native';
 
 const AccordionView = (props) => {

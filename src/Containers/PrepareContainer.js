@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useLayoutEffect} from "react";
 import {
     Text,
     Flex,
@@ -9,30 +9,43 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import QuestionBubble from "@/Components/QuestionBubble";
 import AddQuestionBubble from "@/Components/AddQuestionBubble";
 
-
+//Note: send current stats to backend, backend does magic and figure out which quesiton,save in json file frontend 
 import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
 import DraggableFlatList, {ScaleDecorator} from "react-native-draggable-flatlist";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { navigate } from "@/Navigators/utils";
+import { getData, storeData } from "@/Services/AsyncStorage";
+
 
 
 const PrepareContainer = (props) => {
 
-    //Progranmmers note, questions is currently not populating. half way through programming for up and down button
+
     const {route} = props
     const {params} = route
 
+    //Update Draft Questions with newly selected Questions
     useEffect(() => {
         if (params){
             setDraftQuestions([...draftQuestions, params]) 
         }
     }, [params])
 
-    const [edit, setEdit] = useState(false);
-    const [questions, setQuestions] = useState(data.question);
-    const [draftQuestions, setDraftQuestions] = useState(data.question);
 
+    useLayoutEffect(() => {
+        (async() => {
+            const newQuesitons = await getData('@frontend:newQuesitons')
+            setQuestions(newQuesitons)
+            setDraftQuestions(newQuesitons)
+        })();
+    }, [])
+
+    const [edit, setEdit] = useState(false);
+    const [questions, setQuestions] = useState([]);
+    const [draftQuestions, setDraftQuestions] = useState([]);
+
+    
     const onPress = () => {
         navigateGoBack()
     }
@@ -41,7 +54,8 @@ const PrepareContainer = (props) => {
     }
 
     const deleteOnPress = (currIndx) => {
-        let newQ = [...questions]
+        console.log(currIndx + ' pressed')
+        let newQ = [...draftQuestions]
         newQ.splice(currIndx, 1)
         setDraftQuestions(newQ)
     }
@@ -51,30 +65,31 @@ const PrepareContainer = (props) => {
         setEdit(false)
     }
 
-    const saveOnPress = () => {
-        setQuestions(questions)
-        //TODO: WRITE TO DB
+    const saveOnPress = async() => {
+        setQuestions(draftQuestions)
+        //WRITE TO Asyncstorage
+        await storeData('@frontend:newQuesitons', draftQuestions)
         setEdit(false)
     }
 
     const addOnPress = () => {
         navigate('Question')
-
     }
 
 
     const renderEdit = ({item, drag, index}) => {
+        //TODO: deleteOnPress does not work on Apple
         return (
             <ScaleDecorator>
                 <TouchableOpacity 
                     onLongPress={drag}
                     disabled={!edit}>
                     <QuestionBubble 
-                        color={item.color} 
-                        question={item.question} 
+                        color={"teal.400"} 
+                        question={item.content} 
                         category={item.category}
                         edit={edit}
-                        deleteOnPress={() => {deleteOnPress(index)}}
+                        deleteOnPress={() => deleteOnPress(index)}
                     />
                </TouchableOpacity>
             </ScaleDecorator>

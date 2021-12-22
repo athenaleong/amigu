@@ -18,7 +18,10 @@ import Action from '@/Components/Action/action'
 import { SafeAreaView } from "react-native-safe-area-context";
 import FocusAreaContainer from "./FocusAreaContainer";
 import { navigate } from "@/Navigators/utils";
-import { getMultiple } from "@/Services/AsyncStorage";
+import { getData } from "@/Services/AsyncStorage";
+import axios from "axios";
+import { storeData, getMultiple} from "../Services/AsyncStorage";
+
 
 const HomeContainer = () => {
     const topMargin = 6
@@ -35,8 +38,21 @@ const HomeContainer = () => {
       readItemFromStorage()
     }, [])
 
-    const onPress = () => {
+    const onPress = async () => {
+
+      //Curate new Questions via API call and save to Async Storage
+      let usedQuestions = await getData('@frontend:usedQuestions')
+      usedQuestions = usedQuestions ? usedQuestions : [] 
+      const data = {'numQ': 7, 'oldQ':usedQuestions}
+      const newQuesitons = await getData('@frontend:newQuesitons')
+
+      //Curate new Questions if new Question doesn't exists
+      if (!newQuesitons) {
+        const res = await axios.post('https://tweeby-backend.herokuapp.com/newQuestions', data)
+        await storeData('@frontend:newQuesitons', res.data.newQ)
+      }
       navigate('Prepare')
+
     }
     return (
       <SafeAreaView>
