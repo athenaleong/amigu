@@ -31,7 +31,7 @@ const HomeContainer = () => {
     const readItemFromStorage = async() => {
       const name = await getMultiple(['@frontend:childName', '@frontend:parentAddress']);
       setChildName(name[0][1]);
-      setParentAddress(name[1][1])
+      setParentAddress(name[1][1]);
     }
 
     useEffect(() => {

@@ -4,21 +4,30 @@ import {
     Flex
 } from 'native-base'
 // Pull from backend 
-import * as data from '@/Assets/Bank' 
+// import * as data from '@/Assets/Bank' 
+import axios from "axios";
 import { TouchableOpacity } from 'react-native';
 
 const AccordionView = (props) => {
-    const {questionOnPress} = props
-    const [activeSections, setActiveSections]= useState([])
-    const category = data.questions
+    const {questionOnPress} = props;
+    const [activeSections, setActiveSections]= useState([]);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        (async() => {
+            const res = await axios.get('https://tweeby-backend.herokuapp.com/allQuestions');
+            const payload = res.data.payload;
+            setData(payload);
+        })();
+    }, [])
 
     const sectionOnPress = (category) => {
         if (activeSections.includes(category)) {
             const index = activeSections.indexOf(category);
             if (index > -1) {
-                const temp = [...activeSections]
-                temp.splice(index, 1)
-                setActiveSections(temp)
+                const temp = [...activeSections];
+                temp.splice(index, 1);
+                setActiveSections(temp);
             }
         } else{
             setActiveSections([...activeSections, category])
@@ -28,7 +37,7 @@ const AccordionView = (props) => {
     return (
         <Flex direction='column'>
             {
-                category.map((e, index1) => {
+                data.map((e, index1) => {
                 return(
                     <Flex key={index1}>
                         <TouchableOpacity onPress={() => sectionOnPress(index1)}>
@@ -37,7 +46,7 @@ const AccordionView = (props) => {
                             </Text>
                         </TouchableOpacity>
                         { 
-                            activeSections.includes(index1) && e.question.map((q,index2) => {
+                            activeSections.includes(index1) && e.questions.map((q,index2) => {
                                 return(
                                     <TouchableOpacity 
                                         key={String(index1) + '_' + String(index2)}
@@ -46,9 +55,9 @@ const AccordionView = (props) => {
                                         <Flex 
                                             h ='16'
                                             justify='center'
-                                            bg={q.color}
+                                            bg={'teal.200'}
                                         >
-                                            <Text color='black' variant='subtitle'>{q.question}</Text>
+                                            <Text color='black' variant='subtitle'>{q.content}</Text>
                                         </Flex>
                                     </TouchableOpacity>
                                 )

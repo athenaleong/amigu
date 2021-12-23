@@ -23,7 +23,6 @@ export const getData = async(key) => {
 } 
   
 
-
 export const setMultiple = async(keyValueArray) => {
     try {
       await AsyncStorage.multiSet(keyValueArray)
