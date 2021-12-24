@@ -57,7 +57,7 @@ const PetContainer = (props) => {
             <ScrollView>
                 <Flex direction='column' align='center' >
                     <Text color="black" variant='title'>{childName} & {parentAddress}</Text>
-                    <Image source={still} size='xl' alt='penguin'/>
+                    <Image source={still} width={200} height={200} alt='penguin'/>
                     <HStack space='4'>
                         <Text variant='subtitle'>{petWeight}</Text>
                         <Text variant='subtitle'>{petHeight}</Text>
