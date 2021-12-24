@@ -21,7 +21,7 @@ const MainNavigator = () => {
         >
             <Tab.Screen name="Home" component={HomeContainer} />
             <Tab.Screen name="Pet" component={PetContainer} />
-            <Tab.Screen name="Treasure" component={TreasureContainer}/>
+            {/* <Tab.Screen name="Treasure" component={TreasureContainer}/> */}
         </Tab.Navigator>
     )
 }

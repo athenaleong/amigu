@@ -13,10 +13,12 @@ const App = () => {
     await setMultiple([['@frontend:childAge', '6'], 
                     ['@frontend:childName', 'Hugo'],
                     ['@frontend:parentAddress', 'Dad'],
+                    ['@frontend:petHeight', '30'],
+                    ['@frontend:petWeight', '0.5']
                   ])
 
     //TODO: Get Treasure Name dynamically 
-    await storeData('@frontend:treasures', {'dance':[], 'drinks':[], 'fidgets':[]})
+    await storeData('@frontend:treasureCollection', {'dance':['3', '7'], 'drinks':['1'], 'fidgets':['5']})
   }
 
 
