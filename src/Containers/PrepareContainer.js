@@ -67,6 +67,7 @@ const PrepareContainer = (props) => {
 
     const saveOnPress = async() => {
         setQuestions(draftQuestions)
+        console.log(questions)
         //WRITE TO Asyncstorage
         await storeData('@frontend:newQuesitons', draftQuestions)
         setEdit(false)
