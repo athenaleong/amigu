@@ -7,6 +7,7 @@ import { navigationRef } from './utils'
 import PrepareContainer from '@/Containers/PrepareContainer'
 import QuestionContainer from '@/Containers/QuestionContainer'
 import TreasureContainer from '@/Containers/TreasureContainer'
+import AdventureContainer from '@/Containers/AdventureContainer'
 
 
 const Stack = createStackNavigator()
