@@ -14,6 +14,7 @@ import DialogueView from '../Components/Adventure/DialogueView';
 import * as Game from '@/Assets/Game.json';
 import axios from "axios";
 import { storeData } from '../Services/AsyncStorage';
+import { navigateAndSimpleReset } from '@/Navigators/utils';
 
 const AdventureContainer = () => {
 
@@ -81,7 +82,12 @@ const AdventureContainer = () => {
             if (nextScene == state.maxScene) {
                 //Last Scene, Last Frame 
                 //Handle Ending Scene NOTE: resetting for testing purpose
-                dispatch({type: 'reset'}) 
+                showModal('end');
+                // dispatch({type: 'reset'})
+                await timeout(200); 
+                hideModal();
+                navigateAndSimpleReset('AdventureEnd');
+
             }
             else {
                 //Show Transition
@@ -96,7 +102,6 @@ const AdventureContainer = () => {
                 if (data[nextScene].prize) {
                     const detail = await(getTreasure(data[nextScene].prize));
                     data[nextScene].prizeDetail = detail;
-                    console.log(data[nextScene]);
                 }
 
                 //Populate detail of experience

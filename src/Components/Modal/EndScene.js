@@ -29,11 +29,12 @@ const EndScene = (props) => {
     //       </Modal.Body>
     //     </Modal.Content>
     //   </Modal>
-        <Spinner 
+    <Spinner 
             visible={props.visible} 
-            overlayColor='rgba(87, 217, 106, 1)'
+            overlayColor='rgba(34, 211, 238, 1)'
             customIndicator={customIndicator()} 
-        />
+    />
+        
     )
 }
 
