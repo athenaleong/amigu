@@ -22,10 +22,10 @@ const TreasureContainer = (props) => {
     const [collected, setCollected] = useState([])
 
     //Extract data sent from Pet Containerr
-    const {id, idToInfo, name} = props.route.params;
+    const {id, idToInfo, type} = props.route.params;
 
     //Keep tracks of which terasure has been collected
-    const data = idToInfo.treasure;
+    const data = idToInfo;
 
     const treasureOnPress = (idx) => {
         if (collected[idx]) {
@@ -54,7 +54,7 @@ const TreasureContainer = (props) => {
                 justify='center'
                 align='center'
             >
-                <Text color='black' variant='title'>{name.toUpperCase()}</Text>
+                <Text color='black' variant='title'>{type.toUpperCase()}</Text>
                 {/* Image rerenders when key field is updated. Could test with memoized*/}
                 <Image 
                     source={selected} key={count}

@@ -54,7 +54,6 @@ const PrepareContainer = (props) => {
     }
 
     const deleteOnPress = (currIndx) => {
-        console.log(currIndx + ' pressed')
         let newQ = [...draftQuestions]
         newQ.splice(currIndx, 1)
         setDraftQuestions(newQ)

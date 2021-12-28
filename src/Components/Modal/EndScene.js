@@ -13,7 +13,7 @@ const customIndicator = () => {
     )
 }
 
-const LoadingView = (props) => {
+const EndScene = (props) => {
 
     useEffect(() => {
         // console.log('hi')
@@ -30,11 +30,11 @@ const LoadingView = (props) => {
     //     </Modal.Content>
     //   </Modal>
         <Spinner 
-            visible={props.loading} 
-            overlayColor='rgba(34, 211, 238, 1)'
+            visible={props.visible} 
+            overlayColor='rgba(87, 217, 106, 1)'
             customIndicator={customIndicator()} 
         />
     )
 }
 
-export default LoadingView
+export default EndScene
