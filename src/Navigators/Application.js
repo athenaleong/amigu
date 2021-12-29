@@ -7,6 +7,8 @@ import { navigationRef } from './utils'
 import PrepareContainer from '@/Containers/PrepareContainer'
 import QuestionContainer from '@/Containers/QuestionContainer'
 import TreasureContainer from '@/Containers/TreasureContainer'
+import AdventureContainer from '@/Containers/AdventureContainer'
+import EndContainer from '@/Containers/EndContainer'
 
 
 const Stack = createStackNavigator()
@@ -19,9 +21,12 @@ const ApplicationNavigator = () => {
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator screenOptions={{ headerShown: true }}>
                         <Stack.Screen name="Main" component={MainNavigator} />
+                        <Stack.Screen  name="Adventure" component={AdventureContainer}/>
+                        {/* <Stack.Screen  name="Prepare" component={PrepareContainer}/> */}
                         <Stack.Screen  name="Prepare" component={PrepareContainer}/>
                         <Stack.Screen  name="Question" component={QuestionContainer}/>
                         <Stack.Screen name="Treasure" component={TreasureContainer}/>
+                        <Stack.Screen name="AdventureEnd" component={EndContainer}/>
                     </Stack.Navigator>
                 </NavigationContainer>
         </View>

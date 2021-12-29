@@ -1,0 +1,28 @@
+{
+    "data":
+    [{
+        "category": "imagination",
+        "chat": ["a", "b"],
+        "frameType": ["dialogue", "dialogue"],
+        "content": "What do you think grown-ups dont understand?",
+        "frame": [1,2],
+        "id": 1001
+      },
+      {
+        "category": "imagination",
+        "chat": ["a","b"],
+        "frameType": ["dialogue", "dialogue"],
+        "content": "What does your inner voice say to you?",
+        "frame": [1,2],
+        "id": 1002
+      },
+      {
+        "category": "imagination",
+        "chat": ["a","b"],
+        "frameType": ["dialogue", "dialogue"],
+        "content": "If you could go back in time, what would you do differently?",
+        "frame": [1,2],
+        "id": 1003
+      }]
+
+}

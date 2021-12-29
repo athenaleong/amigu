@@ -37,16 +37,16 @@ const AccordionView = (props) => {
     return (
         <Flex direction='column'>
             {
-                data.map((e, index1) => {
+                data.map((item, index1) => {
                 return(
                     <Flex key={index1}>
                         <TouchableOpacity onPress={() => sectionOnPress(index1)}>
                             <Text color='black' variant='title'>
-                                {e.category}
+                                {item.category}
                             </Text>
                         </TouchableOpacity>
                         { 
-                            activeSections.includes(index1) && e.questions.map((q,index2) => {
+                            activeSections.includes(index1) && item.questions.map((q,index2) => {
                                 return(
                                     <TouchableOpacity 
                                         key={String(index1) + '_' + String(index2)}

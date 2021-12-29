@@ -5,7 +5,7 @@ import PrepareContainer from '@/Containers/PrepareContainer';
 import QuestionContainer from '@/Containers/QuestionContainer';
 import PetContainer from '@/Containers/PetContainer';
 import TreasureContainer from '@/Containers/TreasureContainer';
-
+import StartContainer  from '@/Containers/StartContainer';
 const Tab = createBottomTabNavigator();
 
 const MainNavigator = () => {
@@ -20,8 +20,8 @@ const MainNavigator = () => {
             }}
         >
             <Tab.Screen name="Home" component={HomeContainer} />
+            <Tab.Screen name="Start" component={StartContainer}/>
             <Tab.Screen name="Pet" component={PetContainer} />
-            {/* <Tab.Screen name="Treasure" component={TreasureContainer}/> */}
         </Tab.Navigator>
     )
 }
