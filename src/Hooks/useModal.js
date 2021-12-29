@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 function useModal(props) {
-    const [isModal, setIsModal] = useState(true);
+    const [isModal, setIsModal] = useState(false);
     const [modalState, setModalState] = useState('transition');
 
     const showModal = (state) => {

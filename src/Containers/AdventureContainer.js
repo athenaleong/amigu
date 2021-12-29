@@ -159,10 +159,16 @@ const AdventureContainer = () => {
 
     async function endAdventure() {
         showModal('end');
+
+        //Save current questions into usedQuestions
         const questionId = AllScene.map(x => x.id);
         let usedQuestion = await getData('@frontend:usedQuestions');
         usedQuestion = usedQuestion.concat(questionId);
         await storeData('@frontend:usedQuestions', usedQuestion);
+
+        //Clear new Questions
+        await storeData('@frontend:newQuestions', []);
+
         hideModal();
         navigateAndSimpleReset('AdventureEnd');
     }

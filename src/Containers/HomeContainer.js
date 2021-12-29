@@ -21,12 +21,16 @@ import { navigate } from "@/Navigators/utils";
 import { getData } from "@/Services/AsyncStorage";
 import axios from "axios";
 import { storeData, getMultiple} from "../Services/AsyncStorage";
+import ModalView from "@/Components/Modal/ModalView";
+import useModal from "@/Hooks/useModal";
 
 
 const HomeContainer = () => {
     const topMargin = 6
     const [childName, setChildName] =  useState('');
     const [parentAddress, setParentAddress] = useState('');
+    const [modalState, isModal, showModal, hideModal] = useModal();
+
 
     const readItemFromStorage = async() => {
       const name = await getMultiple(['@frontend:childName', '@frontend:parentAddress']);
@@ -39,7 +43,7 @@ const HomeContainer = () => {
     }, [])
 
     const onPress = async () => {
-
+      showModal('transition');
       //Curate new Questions via API call and save to Async Storage
       let usedQuestions = await getData('@frontend:usedQuestions')
       usedQuestions = usedQuestions ? usedQuestions : [] 
@@ -47,14 +51,18 @@ const HomeContainer = () => {
       const newQuestions = await getData('@frontend:newQuestions')
 
       //Curate new Questions if new Question doesn't exists
-      if (!newQuestions) {
+      if (!newQuestions || newQuestions.length == 0) {
         const res = await axios.post('https://tweeby-backend.herokuapp.com/newQuestions', data)
-        await storeData('@frontend:newQuestion', res.data.newQ)
-      }
+        await storeData('@frontend:newQuestions', res.data.newQ)
+      } 
       navigate('Prepare')
+      hideModal();
+
 
     }
     return (
+      <>
+      <ModalView visible={isModal} state={modalState} />
       <SafeAreaView>
           <VStack alignItems="center">
             <Text color="black" variant='title'>{childName} & {parentAddress}</Text>
@@ -70,7 +78,8 @@ const HomeContainer = () => {
             
           </VStack>
       </SafeAreaView>
-    )
+      </>
+    );
 }
 
 
