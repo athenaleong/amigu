@@ -16,19 +16,11 @@ const customIndicator = () => {
 const StartScene = (props) => {
 
     useEffect(() => {
-        // console.log('hi')
-        // console.log(props.loading)
+        // console.log('hi start loading')
 
     },[])
 
     return (
-    //     <Modal isOpen={true} transparent={false} presentationStyle='fullScreen' > 
-    //     <Modal.Content width="100%" height='100%'>
-    //       <Modal.Body>
-    //           <Text>HELLO</Text>
-    //       </Modal.Body>
-    //     </Modal.Content>
-    //   </Modal>
         <Spinner 
             visible={props.visible} 
             overlayColor='rgba(217, 87, 119, 1)'

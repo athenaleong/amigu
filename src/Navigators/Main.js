@@ -20,8 +20,8 @@ const MainNavigator = () => {
             }}
         >
             <Tab.Screen name="Home" component={HomeContainer} />
-            <Tab.Screen name="Pet" component={PetContainer} />
             <Tab.Screen name="Start" component={StartContainer}/>
+            <Tab.Screen name="Pet" component={PetContainer} />
         </Tab.Navigator>
     )
 }

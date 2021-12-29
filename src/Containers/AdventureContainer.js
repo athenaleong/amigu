@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useReducer} from 'react'
+import React, {useEffect, useState, useReducer, useLayoutEffect} from 'react'
 import {
     Flex,
     Text,
@@ -18,19 +18,16 @@ import { navigateAndSimpleReset } from '@/Navigators/utils';
 
 const AdventureContainer = () => {
 
-    let data = Game['data'];
-
-    const [questions, setQuestions] = useState();
+    const [currScene, setCurrScene] = useState(null);
+    const [AllScene, setAllScene] = useState(null);
     const [modalState, isModal, showModal, hideModal] = useModal();
+    const [newTreasure, setNewTreasure] = useState({});
 
 
     //Reducer to keep track of Game State 
 
     const initialState = {
-        currScene : 0,
-        currFrame: 0,
-        maxScene: data.length,
-        maxFrame: data[0].frameType.length
+     
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -38,14 +35,13 @@ const AdventureContainer = () => {
     function reducer(state, action) {
         switch (action.type) {
             case 'nextScene':
-                let maxFrame = data[state.currScene + 1].frameType.length
-                return {...state, currScene: state.currScene + 1, currFrame: 0, maxFrame: maxFrame}
+                let maxFrame = currScene.frameType.length
+                return {...state, currSceneIdx: state.currSceneIdx + 1, currFrameIdx: 0, maxFrame: maxFrame}
             case 'nextFrame':
-                return {...state, currFrame: state.currFrame + 1}
+                return {...state, currFrameIdx: state.currFrameIdx + 1}
             case 'reset':
-                maxFrame = data[0].frameType.length
-                const maxScene = data.length
-                return {maxScene: maxScene, currScene: 0, currFrame: 0, maxFrame: maxFrame}
+                maxFrame = currScene.frameType.length
+                return {maxScene: AllScene.length, currSceneIdx: 0, currFrameIdx: 0, maxFrame: maxFrame}
             default:
                 throw new Error();
         }
@@ -64,22 +60,24 @@ const AdventureContainer = () => {
         return response.data['payload'];
     }
 
-    async function storeTreasure(detail) {
+    async function storeTreasure(info) {
         const currTreasure = await getData('@frontend:treasureCollection');
-        if (currTreasure[detail.type]) {
-            currTreasure[detail.type].push(detail.id);
+        if (currTreasure[info.type]) {
+            currTreasure[info.type].push(info.id);
         } else {
-            currTreasure[detail.type] = [detail.id];
+            currTreasure[info.type] = [info.id];
         }
         await storeData('@frontend:treasureCollection', currTreasure);
     }
 
-    async function nextOnPress() {
 
-        const nextFrame = state.currFrame + 1;
-        const nextScene = state.currScene + 1;
-        if (nextFrame == state.maxFrame) {
-            if (nextScene == state.maxScene) {
+    async function nextOnPress() {
+        console.log(state)
+        const nextFrameIdx = state.currFrameIdx + 1;
+        const nextSceneIdx = state.currSceneIdx + 1;
+
+        if (nextFrameIdx == state.maxFrame) {
+            if (nextSceneIdx == state.maxScene) {
                 //Last Scene, Last Frame 
                 //Handle Ending Scene NOTE: resetting for testing purpose
                 showModal('end');
@@ -93,16 +91,25 @@ const AdventureContainer = () => {
                 //Show Transition
                 showModal('transition');
 
-                //Add current prize into collected
-                if (data[state.currScene].prize) {
-                    await storeTreasure(data[state.currScene].prizeDetail);
+                //Add current treausre into collected
+                if (currScene.treasure) {
+                    await storeTreasure(currScene.treasureDetail);
                 }
 
-                //Populate detail of prize
-                if (data[nextScene].prize) {
-                    const detail = await(getTreasure(data[nextScene].prize));
-                    data[nextScene].prizeDetail = detail;
+                //get New Scene
+                const newScene = AllScene[nextSceneIdx];
+                newScene.frameType.push('experience')
+
+                //If next scene is odd, add treasure into Scene
+                if (nextSceneIdx % 2 == 1) {
+                    newScene.treasure = newTreasure[(nextSceneIdx - 1)/ 2];
+                    const treasureDetail = await getTreasure(newScene.treasure);
+                    newScene.treasureDetail = treasureDetail;
+                    newScene.frameType.push('treasure')
                 }
+
+                //Set New Scene
+                setCurrScene(newScene);
 
                 //Populate detail of experience
                 dispatch({type: 'nextScene'})
@@ -117,46 +124,39 @@ const AdventureContainer = () => {
 
     useEffect(() => {
        (async() => {
+        console.log('hey')
         showModal('start');
+        let newQuesitons = await getData('@frontend:newQuesitons');
+        setAllScene(newQuesitons);
 
-        //Currently useless
-        const newQuesitons = await getData('@frontend:newQuesitons');
-        setQuestions(newQuesitons);
-
-        //Every 2nd Question gets prize, get a new set of treasures
+        //Get a new set of treasures
         const oldTreasure = await getData('@frontend:treasureCollection');
-        const payload = {'oldTreasure': oldTreasure, 'length': data.length / 2};
+        const payload = {'oldTreasure': oldTreasure, 'length': newQuesitons.length / 2};
         const newPayload = await axios.post('https://tweeby-backend.herokuapp.com/newTreasures', payload);
         const newTreasure = newPayload.data['newTreasure'];
+        setNewTreasure(newTreasure);
 
-
-        data.forEach((item, idx) => {
-
-            item.frameType.push('experience');
-            
-            if (idx % 2 != 0) {
-                item.frameType.push('prize');
-                item.prize = newTreasure[(idx - 1) / 2] 
-            }
-
-        })
+        //Store First Scene into CurrScene
+        const firstScene = newQuesitons[0];
+        firstScene.frameType.push('experience');
+        setCurrScene(firstScene)
 
         dispatch({type: 'reset'})
         hideModal();
        })();
     }, [])
 
-    function renderFrame(currScene, currFrame) {
-        const frameType = data[currScene].frameType[currFrame];
+    function renderFrame(currFrameIdx) {
+        const frameType = currScene.frameType[currFrameIdx];
         switch (frameType) {
             case 'dialogue':
-                const chat = data[currScene].chat[currFrame]
-                const petType = data[currScene].frame[currFrame]
+                const chat = currScene.chat[currFrameIdx]
+                const petType = currScene.petType[currFrameIdx]
                 return <DialogueView chat={chat} petType={imgArray[petType]}></DialogueView>
             case 'experience':
                 return <Text>{"WOW! Thank you for letting me know "}</Text>
-            case 'prize':
-                const detail = data[currScene].prizeDetail
+            case 'treasure':
+                const detail = currScene.treasureDetail
                 return <Text>You won Prize {detail.id}</Text>
             case 'end':
                 return <Text>End</Text>
@@ -165,15 +165,20 @@ const AdventureContainer = () => {
         }
     }
 
+
     return (
         <>
         <ModalView visible={isModal} state={modalState}/>
-        <Flex h='100%' w='100%' bg='primary.300' justify='space-evenly'>
-            <Text> C {state.currScene}  F {state.currFrame} max Frame {state.maxFrame} max Scene {state.maxScene} {data[state.currScene].frameType[state.currFrame]}</Text>
-            {renderFrame(state.currScene, state.currFrame)}
-            <Button onPress={nextOnPress}>Next</Button>
-            <Text>{data[0].frameType.length}</Text>
-        </Flex>
+        {currScene && 
+            <>
+            <Flex h='100%' w='100%' bg='primary.300' justify='space-evenly'>
+                <Text> C {state.currSceneIdx}  F {state.currFrameIdx} max Frame {state.maxFrame} max Scene {state.maxScene}</Text>
+                {renderFrame(state.currFrameIdx)}
+                <Button onPress={nextOnPress}>Next</Button>
+                {<Text>{currScene.frameType.length}</Text>}
+            </Flex>
+            </>
+        }
         </>
     )
 }

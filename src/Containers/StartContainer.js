@@ -7,17 +7,21 @@ import {
 } from 'native-base';
 import still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { navigateAndSimpleReset } from '@/Navigators/utils';
 
 
 const StartContainer = (props) => {
+    function onPress() {
+        navigateAndSimpleReset('Adventure')
+    }
 
     return (
         <SafeAreaView>
             <Flex direction='column' align='center'>
                 <Flex>
-                    <Image source={still} size='2xl' at='penguin'></Image>
+                    <Image source={still} size='2xl' alt='penguin'></Image>
                 </Flex>
-                <Button> Go on Adventure </Button>
+                <Button onPress={onPress}> Go on Adventure </Button>
             </Flex>
         </SafeAreaView>
     )
