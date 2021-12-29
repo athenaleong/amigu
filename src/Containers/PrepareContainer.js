@@ -35,9 +35,9 @@ const PrepareContainer = (props) => {
 
     useLayoutEffect(() => {
         (async() => {
-            const newQuesitons = await getData('@frontend:newQuesitons')
-            setQuestions(newQuesitons)
-            setDraftQuestions(newQuesitons)
+            const newQuestions = await getData('@frontend:newQuestions')
+            setQuestions(newQuestions)
+            setDraftQuestions(newQuestions)
         })();
     }, [])
 
@@ -68,7 +68,7 @@ const PrepareContainer = (props) => {
         setQuestions(draftQuestions)
         console.log(questions)
         //WRITE TO Asyncstorage
-        await storeData('@frontend:newQuesitons', draftQuestions)
+        await storeData('@frontend:newQuestions', draftQuestions)
         setEdit(false)
     }
 

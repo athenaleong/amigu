@@ -43,13 +43,13 @@ const HomeContainer = () => {
       //Curate new Questions via API call and save to Async Storage
       let usedQuestions = await getData('@frontend:usedQuestions')
       usedQuestions = usedQuestions ? usedQuestions : [] 
-      const data = {'numQ': 7, 'oldQ':usedQuestions}
-      const newQuesitons = await getData('@frontend:newQuesitons')
+      const data = {'numQ': 7, 'usedQ':usedQuestions}
+      const newQuestions = await getData('@frontend:newQuestions')
 
       //Curate new Questions if new Question doesn't exists
-      if (!newQuesitons) {
+      if (!newQuestions) {
         const res = await axios.post('https://tweeby-backend.herokuapp.com/newQuestions', data)
-        await storeData('@frontend:newQuesitons', res.data.newQ)
+        await storeData('@frontend:newQuestion', res.data.newQ)
       }
       navigate('Prepare')
 

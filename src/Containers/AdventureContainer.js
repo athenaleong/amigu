@@ -25,10 +25,7 @@ const AdventureContainer = () => {
 
 
     //Reducer to keep track of Game State 
-
-    const initialState = {
-     
-    }
+    const initialState = {}
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -49,52 +46,29 @@ const AdventureContainer = () => {
 
     const imgArray = {'1': Boba, '2': Still};
 
-    //Random time for Transition Screen
-    function timeout(delay) {
-        return new Promise( res => setTimeout(res, delay) );
-    }
-
-    async function getTreasure(id) {
-        const url = `https://tweeby-backend.herokuapp.com/treasureDetail?id=${id}`;
-        const response = await axios.get(url);
-        return response.data['payload'];
-    }
-
-    async function storeTreasure(info) {
-        const currTreasure = await getData('@frontend:treasureCollection');
-        if (currTreasure[info.type]) {
-            currTreasure[info.type].push(info.id);
-        } else {
-            currTreasure[info.type] = [info.id];
-        }
-        await storeData('@frontend:treasureCollection', currTreasure);
-    }
-
-
     async function nextOnPress() {
-        console.log(state)
         const nextFrameIdx = state.currFrameIdx + 1;
         const nextSceneIdx = state.currSceneIdx + 1;
 
         if (nextFrameIdx == state.maxFrame) {
+            //Show Transition
+            showModal('transition');
+
+             //Add current treausre into collected
+             if (currScene.treasure) {
+                await storeTreasure(currScene.treasureDetail);
+
+            // Add question into usedQuestion
+            }
+
+            //
             if (nextSceneIdx == state.maxScene) {
-                //Last Scene, Last Frame 
-                //Handle Ending Scene NOTE: resetting for testing purpose
-                showModal('end');
-                // dispatch({type: 'reset'})
-                await timeout(200); 
-                hideModal();
-                navigateAndSimpleReset('AdventureEnd');
+                //Last Frame. Last Scene
+                await endAdventure();
 
             }
             else {
-                //Show Transition
-                showModal('transition');
-
-                //Add current treausre into collected
-                if (currScene.treasure) {
-                    await storeTreasure(currScene.treasureDetail);
-                }
+                //Last Frame, Not Last Scene
 
                 //get New Scene
                 const newScene = AllScene[nextSceneIdx];
@@ -111,11 +85,9 @@ const AdventureContainer = () => {
                 //Set New Scene
                 setCurrScene(newScene);
 
-                //Populate detail of experience
                 dispatch({type: 'nextScene'})
 
                 hideModal()
-                //End Transition
             }
         } else {
             dispatch({type: 'nextFrame'})
@@ -124,20 +96,19 @@ const AdventureContainer = () => {
 
     useEffect(() => {
        (async() => {
-        console.log('hey')
         showModal('start');
-        let newQuesitons = await getData('@frontend:newQuesitons');
-        setAllScene(newQuesitons);
-
+        let newQuestions = await getData('@frontend:newQuestions');
+        
+        setAllScene(newQuestions);
         //Get a new set of treasures
         const oldTreasure = await getData('@frontend:treasureCollection');
-        const payload = {'oldTreasure': oldTreasure, 'length': newQuesitons.length / 2};
+        const payload = {'oldTreasure': oldTreasure, 'length': newQuestions.length / 2};
         const newPayload = await axios.post('https://tweeby-backend.herokuapp.com/newTreasures', payload);
         const newTreasure = newPayload.data['newTreasure'];
         setNewTreasure(newTreasure);
 
         //Store First Scene into CurrScene
-        const firstScene = newQuesitons[0];
+        const firstScene = newQuestions[0];
         firstScene.frameType.push('experience');
         setCurrScene(firstScene)
 
@@ -163,6 +134,37 @@ const AdventureContainer = () => {
             default:
                 return <Text>Default</Text>
         }
+    }
+
+    //Function to create artifical delay, for testing purpose 
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
+    async function getTreasure(id) {
+        const url = `https://tweeby-backend.herokuapp.com/treasureDetail?id=${id}`;
+        const response = await axios.get(url);
+        return response.data['payload'];
+    }
+
+    async function storeTreasure(info) {
+        const currTreasure = await getData('@frontend:treasureCollection');
+        if (currTreasure[info.type]) {
+            currTreasure[info.type].push(info.id);
+        } else {
+            currTreasure[info.type] = [info.id];
+        }
+        await storeData('@frontend:treasureCollection', currTreasure);
+    }
+
+    async function endAdventure() {
+        showModal('end');
+        const questionId = AllScene.map(x => x.id);
+        let usedQuestion = await getData('@frontend:usedQuestions');
+        usedQuestion = usedQuestion.concat(questionId);
+        await storeData('@frontend:usedQuestions', usedQuestion);
+        hideModal();
+        navigateAndSimpleReset('AdventureEnd');
     }
 
 

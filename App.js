@@ -19,7 +19,9 @@ const App = () => {
 
     //TODO: Get Treasure Name dynamically 
     await storeData('@frontend:treasureCollection', {'dance':[1003, 1007], 'drinks':[2001], 'fidgets':[3005]})
-    await storeData('@frontend:newQuesitons', []);
+    await storeData('@frontend:newQuestions', []);
+    await storeData('@frontend:usedQuestions', []);
+
   }
 
 
