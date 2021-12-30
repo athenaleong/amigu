@@ -15,11 +15,6 @@ const customIndicator = () => {
 
 const StartScene = (props) => {
 
-    useEffect(() => {
-        // console.log('hi start loading')
-
-    },[])
-
     return (
         <Spinner 
             visible={props.visible} 

@@ -16,8 +16,7 @@ const customIndicator = () => {
 const EndScene = (props) => {
 
     useEffect(() => {
-        // console.log('hi')
-        // console.log(props.loading)
+        // 
 
     },[])
 

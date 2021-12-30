@@ -6,8 +6,8 @@ import {
     Button
 } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context";
-import QuestionBubble from "@/Components/QuestionBubble";
-import AddQuestionBubble from "@/Components/AddQuestionBubble";
+import QuestionBubble from "@/Components/Question/QuestionBubble";
+import AddQuestionBubble from "@/Components/Question/AddQuestionBubble";
 
 //Note: send current stats to backend, backend does magic and figure out which quesiton,save in json file frontend 
 import * as data from '@/Assets/Question.json'

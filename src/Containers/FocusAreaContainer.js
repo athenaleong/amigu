@@ -17,6 +17,7 @@ import {
 import FocusAreaBubble from "@/Components/FocusAreaBubble";
 import * as data from '@/Assets/Category.json';
 
+//Focus Area Container nested in Parent Container
 const FocusAreaContainer = () => {
     const category = data.category;
 

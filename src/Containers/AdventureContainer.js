@@ -16,6 +16,7 @@ import axios from "axios";
 import { storeData } from '../Services/AsyncStorage';
 import { navigateAndSimpleReset } from '@/Navigators/utils';
 
+// Main container for an adventure
 const AdventureContainer = () => {
 
     const [currScene, setCurrScene] = useState(null);
@@ -57,15 +58,12 @@ const AdventureContainer = () => {
              //Add current treausre into collected
              if (currScene.treasure) {
                 await storeTreasure(currScene.treasureDetail);
-
-            // Add question into usedQuestion
             }
 
             //
             if (nextSceneIdx == state.maxScene) {
                 //Last Frame. Last Scene
                 await endAdventure();
-
             }
             else {
                 //Last Frame, Not Last Scene
@@ -141,12 +139,14 @@ const AdventureContainer = () => {
         return new Promise( res => setTimeout(res, delay) );
     }
 
+    //treasure id to treasure detail
     async function getTreasure(id) {
         const url = `https://tweeby-backend.herokuapp.com/treasureDetail?id=${id}`;
         const response = await axios.get(url);
         return response.data['payload'];
     }
 
+    //Store treasure into treasureCollection
     async function storeTreasure(info) {
         const currTreasure = await getData('@frontend:treasureCollection');
         if (currTreasure[info.type]) {

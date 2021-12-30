@@ -9,7 +9,7 @@ import AccordionView from '@/Components/Accordion';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigateGoBack, navigate } from "@/Navigators/utils";
 
-
+//Parent Facing Container to show all available questions
 const QuestionContainer = () => {
 
     const onPress = () => {

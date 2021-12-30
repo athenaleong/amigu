@@ -24,14 +24,16 @@ import { storeData, getMultiple} from "../Services/AsyncStorage";
 import ModalView from "@/Components/Modal/ModalView";
 import useModal from "@/Hooks/useModal";
 
+//Parent Facing Container
+const ParentContainer = () => {
 
-const HomeContainer = () => {
-    const topMargin = 6
     const [childName, setChildName] =  useState('');
     const [parentAddress, setParentAddress] = useState('');
     const [modalState, isModal, showModal, hideModal] = useModal();
 
 
+    //TODO: Change to UseReducer or dict instead of multiple useState
+    //rad variables from AsyncStorage
     const readItemFromStorage = async() => {
       const name = await getMultiple(['@frontend:childName', '@frontend:parentAddress']);
       setChildName(name[0][1]);
@@ -44,6 +46,7 @@ const HomeContainer = () => {
 
     const onPress = async () => {
       showModal('transition');
+
       //Curate new Questions via API call and save to Async Storage
       let usedQuestions = await getData('@frontend:usedQuestions')
       usedQuestions = usedQuestions ? usedQuestions : [] 
@@ -83,4 +86,4 @@ const HomeContainer = () => {
 }
 
 
-export default HomeContainer
+export default ParentContainer

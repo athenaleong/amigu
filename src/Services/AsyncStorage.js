@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//Takes in key and value (of any type) and store value in key
 export const storeData = async(key, value) => {
     try {
         value = typeof value == "string" ? value: JSON.stringify(value)
@@ -11,6 +12,7 @@ export const storeData = async(key, value) => {
     }
 }
 
+//Takes in key and return value from key
 export const getData = async(key) => {
     try {
         value = await AsyncStorage.getItem(key)
@@ -22,7 +24,7 @@ export const getData = async(key) => {
     }
 } 
   
-
+//Takes in an array of key and value (of type string) and store values in keys
 export const setMultiple = async(keyValueArray) => {
     try {
       await AsyncStorage.multiSet(keyValueArray)
@@ -35,7 +37,7 @@ export const setMultiple = async(keyValueArray) => {
     console.log("Done.")
   }
 
-
+//Take in an array of keys and return values (of type string) from keys
 export const getMultiple = async(keyValueArray) => {
 
     let values

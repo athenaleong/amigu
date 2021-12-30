@@ -8,6 +8,7 @@ import {
 } from 'native-base'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
 
+// Last Container on an adventure
 const EndContainer = (props) => {
 
     function onPress() {
