@@ -9,6 +9,9 @@ import QuestionContainer from '@/Containers/QuestionContainer'
 import TreasureContainer from '@/Containers/TreasureContainer'
 import AdventureContainer from '@/Containers/AdventureContainer'
 import EndContainer from '@/Containers/EndContainer'
+import ParentContainer from '@/Containers/ParentContainer'
+import PetContainer from '@/Containers/PetContainer'
+import StatsContainer from '@/Containers/StatsContainer'
 
 
 const Stack = createStackNavigator()
@@ -19,8 +22,11 @@ const ApplicationNavigator = () => {
         <View style={{flex:1, backgroundColor: "white"}}>
             <StatusBar/>
                 <NavigationContainer ref={navigationRef}>
-                    <Stack.Navigator screenOptions={{ headerShown: true }}>
-                        <Stack.Screen name="Main" component={MainNavigator} />
+                    <Stack.Navigator screenOptions={{ headerShown: false }}>
+                        <Stack.Screen  name="Pet" component={PetContainer}/>
+                        <Stack.Screen  name="Parent" component={ParentContainer}/>
+                        <Stack.Screen  name="Stats" component={StatsContainer}/>
+                        {/* <Stack.Screen name="Main" component={MainNavigator} /> */}
                         <Stack.Screen  name="Adventure" component={AdventureContainer}/>
                         {/* <Stack.Screen  name="Prepare" component={PrepareContainer}/> */}
                         <Stack.Screen  name="Prepare" component={PrepareContainer}/>

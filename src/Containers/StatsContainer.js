@@ -35,7 +35,7 @@ const StatsContainer = (props) => {
     useLayoutEffect(() => {
         (async() => {
             //Get Treasure Data from backend
-            showModal('transition')
+            showModal('loading')
             const res = await axios.get('https://tweeby-backend.herokuapp.com/allTreasures');
             const payload = res.data.payload;
 

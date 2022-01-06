@@ -11,12 +11,14 @@ const ModalView = (props) => {
             case 'loading':
                 return <LoadingView {...props}/>
             case 'end':
+                //End screen for adventure
                 return <EndScene {...props}/>
             case 'transition':
+                //Transition screen for adventure
                 return <TransitionScene {...props}/>
             case 'start':
+                //Start screen for adventure
                 return <StartScene {...props}/>
-
         }
     }
 

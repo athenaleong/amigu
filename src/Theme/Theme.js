@@ -21,6 +21,26 @@ const Theme = extendTheme({
                     textAlign:"center"
                 }
             }
+        },
+        Image: {
+            variants: {
+                sm : {
+                    size: '300',
+                },
+                md : {
+                    size: '400',
+                },
+                lg: {
+                    size: '500',
+                },
+                xl: {
+                    size: '600',
+                },
+                xxl: {
+                    size: '700',
+                }
+                
+            }
         }
 
     }

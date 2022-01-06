@@ -3,11 +3,16 @@ import {
     Text,
     Flex,
     Image,
-    Button
+    Button,
 } from 'native-base';
-import still from '@/Assets/still.png'
+import Still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigateAndSimpleReset } from '@/Navigators/utils';
+import { FabComponent } from '@/Components/Fab';
+import {TopBar} from '@/Components/TopBar'
+import { LeftBar } from '@/Components/LeftBar';
+import {ImageBackground, StyleSheet} from 'react-native';
+import Background from '@/Assets/background.png'
 
 // Starting container for an adventure
 const PetContainer = (props) => {
@@ -15,16 +20,31 @@ const PetContainer = (props) => {
         navigateAndSimpleReset('Adventure')
     }
 
+    const imageSize = {base: 'sm', sm: 'sm', md: 'sm', lg: 'md', xl:'sm'}
+
     return (
+        <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
         <SafeAreaView>
-            <Flex direction='column' align='center'>
-                <Flex>
-                    <Image source={still} size='2xl' alt='penguin'></Image>
+            <Flex h='100%' w='100%'>
+                {/* <FabComponent /> */}
+                <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
+                    <Image source={Still} variant={imageSize} alt='penguin'></Image>
                 </Flex>
-                <Button onPress={onPress}> Go on Adventure </Button>
-            </Flex>
+                {/* <Button onPress={onPress}> Go on Adventure </Button> */}
+            </Flex> 
+            <LeftBar />
+            <TopBar />
         </SafeAreaView>
+        
+        </ImageBackground>
     )
 }
+
+const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        justifyContent: "center"
+      },
+})
 
 export default PetContainer
