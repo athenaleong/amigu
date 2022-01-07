@@ -23,6 +23,7 @@ import axios from "axios";
 import { storeData, getMultiple} from "../Services/AsyncStorage";
 import ModalView from "@/Components/Modal/ModalView";
 import useModal from "@/Hooks/useModal";
+import { navigateAndSimpleReset } from '@/Navigators/utils';
 
 //Parent Facing Container
 const ParentContainer = () => {
@@ -68,6 +69,7 @@ const ParentContainer = () => {
       <ModalView visible={isModal} state={modalState} />
       <SafeAreaView>
           <VStack alignItems="center">
+            <Button onPress={() => {navigateAndSimpleReset('Pet')}}>Back</Button>
             <Text color="black" variant='title'>{childName} & {parentAddress}</Text>
 
             <HStack>

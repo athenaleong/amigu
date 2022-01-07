@@ -180,10 +180,10 @@ const AdventureContainer = () => {
         {currScene && 
             <>
             <Flex h='100%' w='100%' bg='primary.300' justify='space-evenly'>
-                <Text> C {state.currSceneIdx}  F {state.currFrameIdx} max Frame {state.maxFrame} max Scene {state.maxScene}</Text>
+                {/* <Text> C {state.currSceneIdx}  F {state.currFrameIdx} max Frame {state.maxFrame} max Scene {state.maxScene}</Text> */}
                 {renderFrame(state.currFrameIdx)}
                 <Button onPress={nextOnPress}>Next</Button>
-                {<Text>{currScene.frameType.length}</Text>}
+                {/* {<Text>{currScene.frameType.length}</Text>} */}
             </Flex>
             </>
         }

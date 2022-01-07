@@ -12,7 +12,7 @@ import { navigateAndSimpleReset } from '@/Navigators/utils'
 const EndContainer = (props) => {
 
     function onPress() {
-        navigateAndSimpleReset('Main')
+        navigateAndSimpleReset('Pet')
     }
 
 

@@ -29,8 +29,8 @@ const PetContainer = (props) => {
                 {/* <FabComponent /> */}
                 <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
                     <Image source={Still} variant={ImageSize} alt='penguin'></Image>
+                    <Button onPress={onPress}> Start Adventure</Button>
                 </Flex>
-                {/* <Button onPress={onPress}> Go on Adventure </Button> */}
             </Flex> 
             <LeftBar />
             <TopBar leftItems={['parent']}/>
