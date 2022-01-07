@@ -1,0 +1,1 @@
+export const margin = {base: 8, lg: 12, xl: 16};

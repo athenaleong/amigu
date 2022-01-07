@@ -9,10 +9,11 @@ import Still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigateAndSimpleReset } from '@/Navigators/utils';
 import { FabComponent } from '@/Components/Fab';
-import {TopBar} from '@/Components/TopBar'
+import { TopBar } from '@/Components/TopBar'
 import { LeftBar } from '@/Components/LeftBar';
 import {ImageBackground, StyleSheet} from 'react-native';
-import Background from '@/Assets/background.png'
+import Background from '@/Assets/background/background.png'
+import { ImageSize } from '@/Config/penguinConfig.js'
 
 // Starting container for an adventure
 const PetContainer = (props) => {
@@ -20,7 +21,6 @@ const PetContainer = (props) => {
         navigateAndSimpleReset('Adventure')
     }
 
-    const imageSize = {base: 'sm', sm: 'sm', md: 'sm', lg: 'md', xl:'sm'}
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
@@ -28,12 +28,12 @@ const PetContainer = (props) => {
             <Flex h='100%' w='100%'>
                 {/* <FabComponent /> */}
                 <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
-                    <Image source={Still} variant={imageSize} alt='penguin'></Image>
+                    <Image source={Still} variant={ImageSize} alt='penguin'></Image>
                 </Flex>
                 {/* <Button onPress={onPress}> Go on Adventure </Button> */}
             </Flex> 
             <LeftBar />
-            <TopBar />
+            <TopBar leftItems={['parent']}/>
         </SafeAreaView>
         
         </ImageBackground>

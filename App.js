@@ -5,6 +5,15 @@ import {NativeBaseProvider} from 'native-base';
 import Theme from '@/Theme/Theme'
 import { setMultiple } from '@/Services/AsyncStorage';
 import { storeData } from './src/Services/AsyncStorage';
+import ModalView from '@/Components/Modal/ModalView.js'
+import { 
+  useFonts,
+  BalooDa2_400Regular,
+  BalooDa2_500Medium,
+  BalooDa2_600SemiBold,
+  BalooDa2_700Bold,
+  BalooDa2_800ExtraBold 
+} from '@expo-google-fonts/baloo-da-2'
 
 const App = () => {
 
@@ -21,7 +30,6 @@ const App = () => {
     await storeData('@frontend:treasureCollection', {'dance':[1003, 1007], 'drinks':[2001], 'fidgets':[3005]})
     await storeData('@frontend:newQuestions', []);
     await storeData('@frontend:usedQuestions', []);
-
   }
 
 
@@ -29,12 +37,29 @@ const App = () => {
     setUp()
   }, [])
 
-  return (
+  //Load Font
+  let [fontsLoaded] = useFonts({
+    BalooDa2_400Regular,
+    BalooDa2_500Medium,
+    BalooDa2_600SemiBold,
+    BalooDa2_700Bold,
+    BalooDa2_800ExtraBold 
+  });
 
-  <NativeBaseProvider theme={Theme}>
-    <ApplicationNavigator />
-  </NativeBaseProvider>
-  )
+  if (!fontsLoaded) {
+    return (
+      <NativeBaseProvider theme={Theme}>
+        <ModalView state='loading' visible={true}/>
+      </NativeBaseProvider>
+    )
+  }
+  else {
+    return (
+      <NativeBaseProvider theme={Theme}>
+        <ApplicationNavigator />
+      </NativeBaseProvider>
+    )
+  }
 }
 
 export default App

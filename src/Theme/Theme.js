@@ -1,24 +1,29 @@
 import React from 'react';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 
+
+
 const Theme = extendTheme({
     components: {
         Text:{
             variants: {
                 title: {
                     fontWeight:"bold",
-                    fontSize:"2xl",
-                    textAlign:"center"
+                    fontSize:[24, 36, 48, 60, 72],
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
                 },
                 subtitle: {
                     fontWeight:"medium",
                     fontSize:"sm",
-                    textAlign:"center"
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
                 },
                 subtitleL: {
                     fontWeight:"medium",
-                    fontSize:"lg",
-                    textAlign:"center"
+                    fontSize:[12, 16, 20, 24, 28],
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
                 }
             }
         },

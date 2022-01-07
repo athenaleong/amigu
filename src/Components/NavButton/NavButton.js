@@ -20,7 +20,7 @@ const NavButtons = (props) => {
                 navigateAndSimpleReset('Parent')
                 break;
             case 'treasure':
-                navigateAndSimpleReset('Stats')
+                navigateAndSimpleReset('Mall')
                 break;
             default:
                 break;
