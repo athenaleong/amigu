@@ -4,6 +4,19 @@ import { NativeBaseProvider, extendTheme } from 'native-base';
 
 
 const Theme = extendTheme({
+    colors:{
+        beige: {
+            100:'#FAF1DC',
+            200:'#F3DDB0',
+            300:'#F2DBA9',
+            400:'#F1D8A4',
+            500:'#EDCD89',
+            600:'#E9C371',
+            700:'#E5B858',
+            800:'#E1AE3F',
+            900:'#DDA326'
+        },
+    },
     components: {
         Text:{
             variants: {
@@ -30,19 +43,19 @@ const Theme = extendTheme({
         Image: {
             variants: {
                 sm : {
-                    size: '300',
+                    size: '200',
                 },
                 md : {
-                    size: '400',
+                    size: '300',
                 },
                 lg: {
-                    size: '500',
+                    size: '400',
                 },
                 xl: {
-                    size: '600',
+                    size: '500',
                 },
                 xxl: {
-                    size: '700',
+                    size: '600',
                 }
                 
             }
