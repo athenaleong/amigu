@@ -10,11 +10,20 @@ import useModal from '@/Hooks/useModal';
 import ModalView from '@/Components/Modal/ModalView';
 import Boba from '@/Assets/bubble-tea.png';
 import Still from '@/Assets/still.png';
-import DialogueView from '../Components/Adventure/DialogueView';
+import DialogueView from '@/Components/Adventure/DialogueView';
+import ExperienceView from '@/Components/Adventure/ExperienceView';
+import TreasureView from '@/Components/Adventure/TreasureView'
 import * as Game from '@/Assets/Game.json';
 import axios from "axios";
 import { storeData } from '../Services/AsyncStorage';
 import { navigateAndSimpleReset } from '@/Navigators/utils';
+import AngryPenguin from '@/Assets/penguin/Angry.png';
+import CheerPenguin from '@/Assets/penguin/Cheer.png';
+import ConfusedPenguin from '@/Assets/penguin/Confused.png';
+import SmilePenguin from '@/Assets/penguin/Smile.png';
+import SadPenguin from '@/Assets/penguin/Sad.png';
+import ThinkingPenguin from '@/Assets/penguin/Thinking.png';
+
 
 // Main container for an adventure
 const AdventureContainer = () => {
@@ -45,7 +54,7 @@ const AdventureContainer = () => {
         }
     }
 
-    const imgArray = {'1': Boba, '2': Still};
+    const imgArray = {'1': AngryPenguin, '2': CheerPenguin, '3': ConfusedPenguin, '4': SmilePenguin, '5': SadPenguin, '6': ThinkingPenguin};
 
     async function nextOnPress() {
         const nextFrameIdx = state.currFrameIdx + 1;
@@ -121,12 +130,12 @@ const AdventureContainer = () => {
             case 'dialogue':
                 const chat = currScene.chat[currFrameIdx]
                 const petType = currScene.petType[currFrameIdx]
-                return <DialogueView chat={chat} petType={imgArray[petType]}></DialogueView>
+                return <DialogueView chat={chat} petType={imgArray[petType]} onPress={nextOnPress}></DialogueView>
             case 'experience':
-                return <Text>{"WOW! Thank you for letting me know "}</Text>
+                return <ExperienceView onPress={nextOnPress}/>
             case 'treasure':
                 const detail = currScene.treasureDetail
-                return <Text>You won Prize {detail.id}</Text>
+                return <TreasureView detail={detail} onPress={nextOnPress}/>
             case 'end':
                 return <Text>End</Text>
             default:
@@ -179,11 +188,10 @@ const AdventureContainer = () => {
         <ModalView visible={isModal} state={modalState}/>
         {currScene && 
             <>
-            <Flex h='100%' w='100%' bg='primary.300' justify='space-evenly'>
-                <Text> C {state.currSceneIdx}  F {state.currFrameIdx} max Frame {state.maxFrame} max Scene {state.maxScene}</Text>
+            <Flex h='100%' w='100%' bg='primary.300'>
+                {/* <Text> C {state.currSceneIdx}  F {state.currFrameIdx} max Frame {state.maxFrame} max Scene {state.maxScene}</Text> */}
                 {renderFrame(state.currFrameIdx)}
-                <Button onPress={nextOnPress}>Next</Button>
-                {<Text>{currScene.frameType.length}</Text>}
+                {/* {<Text>{currScene.frameType.length}</Text>} */}
             </Flex>
             </>
         }
