@@ -1,4 +1,5 @@
-import React, {useLayoutEffect, useState, useEffect} from 'react';
+import React, {useLayoutEffect, useState, useEffect, useCallback} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     Text,
     Flex,
@@ -14,19 +15,62 @@ import { LeftBar } from '@/Components/LeftBar';
 import {ImageBackground, StyleSheet} from 'react-native';
 import Background from '@/Assets/background/treehouse-background.jpeg'
 import { ImageSize } from '@/Config/penguinConfig.js'
-import { Peaceful } from '@/Components/Sound.js';
+import { Audio } from 'expo-av';
 
 // Starting container for an adventure
 const PetContainer = (props) => {
 
+    const [sound, setSound] = React.useState();
 
-    function onPress() {
+    async function onPress() {
         navigateAndSimpleReset('Adventure')
     }
 
     useEffect(() => {
-        Peaceful.play();
-    })
+        (async() => {
+            const initialStatus = {isLooping: true}
+            const { sound } = await Audio.Sound.createAsync(
+                require('@/Assets/music/Calm-Forest-Birds.mp3'),
+                initialStatus
+            );
+            setSound(sound);
+
+            console.log('Playing Sound');
+            await sound.playAsync(); 
+
+            
+        })();
+
+        return sound 
+            ? () => {
+                console.log('Unloading Sound');
+                sound.unloadAsync(); }
+            : console.log('hey');
+    },[])
+
+    // useFocusEffect(
+    //     useCallback(() => {
+    //         (async() => {
+    //             const initialStatus = {isLooping: true}
+    //             const { sound } = await Audio.Sound.createAsync(
+    //                 require('@/Assets/music/Calm-Forest-Birds.mp3'),
+    //                 initialStatus
+    //             );
+    //             setSound(sound);
+
+    //             console.log('Playing Sound');
+    //             console.log(sound)
+    //             await sound.playAsync(); 
+    //             console.log('hey')
+    //         })();
+
+    //         return sound ? () => {
+    //             console.log('Unloading Sound');
+    //             sound.unloadAsync(); }
+    //         : () => {console.log(sound)}
+
+    //     }, [])
+    // );
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
