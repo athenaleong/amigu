@@ -1,5 +1,6 @@
 import React from 'react';
 import { NativeBaseProvider, extendTheme } from 'native-base';
+import {margin} from '@/Config/dynamicConfig.js';
 
 
 
@@ -18,6 +19,28 @@ const Theme = extendTheme({
         },
     },
     components: {
+        TypeWriter: {
+            variants: {
+                title: {
+                    fontWeight:"bold",
+                    fontSize:[24, 36, 48, 60, 72],
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
+                },
+                subtitle: {
+                    fontWeight:"medium",
+                    fontSize:"sm",
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
+                },
+                subtitleL: {
+                    fontWeight:"medium",
+                    fontSize:[12, 16, 20, 24, 28],
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
+                }
+            }
+        },
         Text:{
             variants: {
                 title: {
@@ -37,6 +60,21 @@ const Theme = extendTheme({
                     fontSize:[12, 16, 20, 24, 28],
                     textAlign:"center",
                     fontFamily:"BalooDa2_800ExtraBold",
+                }
+            }
+        },
+        FAB: {
+            baseStyle: {
+                top: margin,
+                right: margin
+            },
+            variants: {
+                next : {
+                    label: "Next",
+                    height: [8, 12, 16],
+                    p: margin,
+                    width: 120,
+                    
                 }
             }
         },
