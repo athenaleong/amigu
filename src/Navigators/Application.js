@@ -27,8 +27,8 @@ const ApplicationNavigator = () => {
             <StatusBar/>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
-                        <Stack.Screen  name="Pet" component={PetContainer}/>
                         <Stack.Screen  name="Parent" component={ParentContainer}/>
+                        <Stack.Screen  name="Pet" component={PetContainer}/>
                         <Stack.Screen  name="Stats" component={StatsContainer}/>
                         {/* <Stack.Screen name="Main" component={MainNavigator} /> */}
                         <Stack.Screen  name="Adventure" component={AdventureContainer}/>

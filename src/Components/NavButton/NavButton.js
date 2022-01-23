@@ -6,7 +6,7 @@ import House from '@/Assets/navButton/house.png';
 import Parent from '@/Assets/navButton/parent.png';
 import Photograph from '@/Assets/navButton/photograph.png';
 import Treasure from '@/Assets/navButton/treasure.png';
-import { navigateAndSimpleReset } from '@/Navigators/utils';
+import { navigateAndSimpleReset, navigate} from '@/Navigators/utils';
 
 
 const NavButtons = (props) => {
@@ -14,13 +14,13 @@ const NavButtons = (props) => {
     function onPress() {
         switch (props.variant) {
             case 'home':
-                navigateAndSimpleReset('Pet')
+                navigate('Pet')
                 break;
             case 'parent':
-                navigateAndSimpleReset('Parent')
+                navigate('Parent')
                 break;
             case 'treasure':
-                navigateAndSimpleReset('Mall')
+                navigate('Mall')
                 break;
             default:
                 break;

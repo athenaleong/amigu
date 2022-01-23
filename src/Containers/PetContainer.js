@@ -8,7 +8,7 @@ import {
 } from 'native-base';
 import Still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { navigateAndSimpleReset } from '@/Navigators/utils';
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils';
 import { FabComponent } from '@/Components/Fab';
 import { TopBar } from '@/Components/TopBar'
 import { LeftBar } from '@/Components/LeftBar';
@@ -24,26 +24,26 @@ import {Animated} from 'react-native'
 // Starting container for an adventure
 const PetContainer = (props) => {
 
-    const [sound, setSound] = React.useState();
-
     async function onPress() {
-        navigateAndSimpleReset('Adventure')
+        console.log('hello')
+        navigate('Adventure')
     }
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
-        <BackgroundMusic file='@/Assets/music/Calm-Forest-Birds.mp3'/>
         <SafeAreaView>
             <Flex h='100%' w='100%'>
                 {/* <FabComponent /> */}
                 <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
-                    <Button onPress={onPress}> Start Adventure</Button>
                     <Image source={Still} variant={ImageSize} alt='penguin'></Image>
+                    <Button onPress={onPress}> Start Adventure</Button>
                 </Flex>
+                <LeftBar />
+                <TopBar leftItems={['parent']}/>
             </Flex> 
-            <LeftBar />
-            <TopBar leftItems={['parent']}/>
+            
         </SafeAreaView>
+        <BackgroundMusic file='@/Assets/music/Calm-Forest-Birds.mp3'/>
         
         </ImageBackground>
     )

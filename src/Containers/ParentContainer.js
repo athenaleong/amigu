@@ -2,17 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   Text,
   Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
+  Flex,
   VStack,
-  Code,
   Button,
   Container,
+  IconButton,
+  Icon
 } from "native-base";
 import Action from '@/Components/Action/action'
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -24,6 +19,8 @@ import { storeData, getMultiple} from "../Services/AsyncStorage";
 import ModalView from "@/Components/Modal/ModalView";
 import useModal from "@/Hooks/useModal";
 import { navigateAndSimpleReset } from '@/Navigators/utils';
+import {Ionicons} from '@expo/vector-icons';
+
 
 //Parent Facing Container
 const ParentContainer = () => {
@@ -68,20 +65,29 @@ const ParentContainer = () => {
       <>
       <ModalView visible={isModal} state={modalState} />
       <SafeAreaView>
-          <VStack alignItems="center">
-            <Button onPress={() => {navigateAndSimpleReset('Pet')}}>Back</Button>
-            <Text color="black" variant='title'>{childName} & {parentAddress}</Text>
-
-            <HStack>
-              <Text color="black">3</Text>
-              <Text color="black">Chat in 2 days</Text>
-            </HStack>
-
+          <Flex alignItems="center">
+            <Flex w='100%' pl='5' pt='5'>
+              <IconButton
+                    icon={<Icon as={Ionicons} name="arrow-back-circle-sharp"/>}
+                    onPress={() => navigate('Pet')}
+                    borderRadius="full"
+                    _icon={{
+                        color: "gray.500",
+                        size: ["xl", "xl","xl","2xl"],
+                      }}
+                    _pressed={{
+                        bg: 'transparent',
+                    }}
+                    w='70'
+                />
+            </Flex>
+            <Flex>
+              <Text color="black" variant='subtitleL'>Next Adventure in 2 days</Text>
+            </Flex>
             <Action title={"Prepare Questions"} subtitle={'Make changes to curated questions or add your own'} onPress={onPress}></Action>
-
-            <FocusAreaContainer></FocusAreaContainer>
+            {/* <FocusAreaContainer></FocusAreaContainer> */}
             
-          </VStack>
+          </Flex>
       </SafeAreaView>
       </>
     );

@@ -9,7 +9,7 @@ import {
   Icon,
   NativeBaseProvider,
 } from "native-base"
-import {AntDesign} from '@expo/vector-icons'
+import {AntDesign,Ionicons} from '@expo/vector-icons'
 
 const Action = (props) => {
     const {title, subtitle, onPress} = props
@@ -18,25 +18,26 @@ const Action = (props) => {
             <Flex
                 direction="column"
                 align="center"
+                justify="center"
                 h='40'
-                w='80'
-                bg="teal.400"
-                p="6"
+                w='80%'
+                bg="white"
+                p="6" ic
                 rounded="24"
             >
                 <Icon 
-                    as={AntDesign} 
-                    name="android1"
-                    color={"trueGray.100"}
+                    as={Ionicons} 
+                    name="heart"
+                    color="danger.400"
+                    mb='3'
                 />
-                <Spacer/>
                 <Text
-                    color="white"
-                    variant="title"
+                    color="trueGray.900"
+                    variant="subtitleL"
                 > {title}</Text>
                 <Text
-                    color="white"
-                    variant="subtitle"     
+                    color="trueGray.700"
+                    variant="subtitleLight"     
                 >{subtitle}</Text>
             </Flex>
         </Pressable>

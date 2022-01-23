@@ -6,13 +6,13 @@ import {
     Icon
 } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, StyleSheet} from "react-native";
 
 const AddQuestionBubble = (props) => {
     const {onPress} = props;
 
     return (
-        <TouchableOpacity onPress={() => onPress()}>
+        <TouchableOpacity style={styles.container} onPress={() => onPress()}>
             <Flex 
                 direction="row" 
                 bg={"coolGray.300"} 
@@ -21,7 +21,8 @@ const AddQuestionBubble = (props) => {
                 my='1'
                 h='32' 
                 align='center'
-                justify='center'>
+                justify='center'
+            >
                 
                 <Icon as={Ionicons} 
                     name="ios-add" 
@@ -32,5 +33,11 @@ const AddQuestionBubble = (props) => {
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: '80%'
+    }
+  });
 
 export default AddQuestionBubble

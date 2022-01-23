@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {
     Text,
-    Flex
+    Flex,
+    Pressable
 } from 'native-base'
 // Pull from backend 
 // import * as data from '@/Assets/Bank' 
@@ -17,6 +18,7 @@ const AccordionView = (props) => {
         (async() => {
             const res = await axios.get('https://tweeby-backend.herokuapp.com/allQuestions');
             const payload = res.data.payload;
+            console.log(payload)
             setData(payload);
         })();
     }, [])
@@ -35,16 +37,18 @@ const AccordionView = (props) => {
     }
 
     return (
-        <Flex direction='column'>
+        <Flex direction='column' align='center'>
             {
                 data.map((item, index1) => {
                 return(
-                    <Flex key={index1}>
-                        <TouchableOpacity onPress={() => sectionOnPress(index1)}>
-                            <Text color='black' variant='title'>
-                                {item.category}
-                            </Text>
-                        </TouchableOpacity>
+                    <Flex key={index1} w='80%' align='center' m='3'>
+                        <Flex bg='blue.300' rounded='30' w='80%' p='3'>
+                            <TouchableOpacity onPress={() => sectionOnPress(index1)}>
+                                <Text color='blue.500' variant='subtitleXL'>
+                                    {item.category}
+                                </Text>
+                            </TouchableOpacity>
+                        </Flex>
                         { 
                             activeSections.includes(index1) && item.questions.map((q,index2) => {
                                 return(
@@ -55,9 +59,11 @@ const AccordionView = (props) => {
                                         <Flex 
                                             h ='16'
                                             justify='center'
-                                            bg={'teal.200'}
+                                            wrap='wrap'
+                                            direction='row'
+                                            m='3'
                                         >
-                                            <Text color='black' variant='subtitle'>{q.content}</Text>
+                                            <Text color='black' variant='robotoSubtitle'>{q.content}</Text>
                                         </Flex>
                                     </TouchableOpacity>
                                 )
