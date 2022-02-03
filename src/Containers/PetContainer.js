@@ -1,4 +1,5 @@
-import React, {useLayoutEffect, useState, useEffect} from 'react';
+import React, {useLayoutEffect, useState, useEffect, useCallback} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     Text,
     Flex,
@@ -7,26 +8,26 @@ import {
 } from 'native-base';
 import Still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { navigateAndSimpleReset } from '@/Navigators/utils';
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils';
 import { FabComponent } from '@/Components/Fab';
 import { TopBar } from '@/Components/TopBar'
 import { LeftBar } from '@/Components/LeftBar';
 import {ImageBackground, StyleSheet} from 'react-native';
 import Background from '@/Assets/background/treehouse-background.jpeg'
 import { ImageSize } from '@/Config/penguinConfig.js'
-import { Peaceful } from '@/Components/Sound.js';
+import { Audio } from 'expo-av';
+import {BackgroundMusic} from '@/Components/Audio'
+import {Animated} from 'react-native'
+
+
 
 // Starting container for an adventure
 const PetContainer = (props) => {
 
-
-    function onPress() {
-        navigateAndSimpleReset('Adventure')
+    async function onPress() {
+        console.log('hello')
+        navigate('Adventure')
     }
-
-    useEffect(() => {
-        Peaceful.play();
-    })
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
@@ -34,13 +35,15 @@ const PetContainer = (props) => {
             <Flex h='100%' w='100%'>
                 {/* <FabComponent /> */}
                 <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
-                    <Button onPress={onPress}> Start Adventure</Button>
                     <Image source={Still} variant={ImageSize} alt='penguin'></Image>
+                    <Button onPress={onPress}> Start Adventure</Button>
                 </Flex>
+                <LeftBar />
+                <TopBar leftItems={['parent']}/>
             </Flex> 
-            <LeftBar />
-            <TopBar leftItems={['parent']}/>
+            
         </SafeAreaView>
+        <BackgroundMusic file='@/Assets/music/Calm-Forest-Birds.mp3'/>
         
         </ImageBackground>
     )

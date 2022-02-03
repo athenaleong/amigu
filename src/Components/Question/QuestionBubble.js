@@ -20,12 +20,15 @@ const QuestionBubble = (props) => {
             py='6'
             px='8'
             my='1'
-            h='32' 
-            align='center'>
-            <Text color='black' variant='subtitleL'>{question}</Text>
-            <Flex justify='flex-end'>
+            h='32'
+            w='80%' 
+            align='center'
+            justify='center'
+            >
+            <Text color='black' variant='robotoSubtitle'>{question}</Text>
+            {/* <Flex justify='flex-end'>
                 <Text color='black' variant='subtitle' textAlign='right'>{category.toUpperCase()}</Text>
-            </Flex>
+            </Flex> */}
         </Flex>)
     }
     else {
@@ -36,9 +39,11 @@ const QuestionBubble = (props) => {
             rounded='30' 
             px='3'
             my='1'
+            py='1'
             h='32' 
+            w='80%' 
             align='center'
-            justify='space-evenly'
+            justify='space-between'
         >
             
             <Flex direction='column' justify='center'>
@@ -47,11 +52,11 @@ const QuestionBubble = (props) => {
                 />
             </Flex>
             
-            <Flex direction='column' w='80%' h='100%' py='6'>
-                <Text color='black' variant='subtitleL'>{question}</Text>
-                <Flex justify='flex-end'>
+            <Flex direction='column' w='60%' h='100%' py='6' justify='center'>
+                <Text color='black' variant='robotoSubtitle'>{question}</Text>
+                {/* <Flex justify='flex-end'>
                     <Text color='black' variant='subtitle' textAlign='right'>{category.toUpperCase()}</Text>
-                </Flex>
+                </Flex> */}
             </Flex>
 
             <Flex direction='column' justify='flex-start' h="100%">

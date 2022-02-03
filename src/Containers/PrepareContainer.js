@@ -3,7 +3,11 @@ import {
     Text,
     Flex,
     ScrollView,
-    Button
+    Button,
+    VStack,
+    IconButton,
+    Icon,
+    Spacer
 } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context";
 import QuestionBubble from "@/Components/Question/QuestionBubble";
@@ -13,11 +17,13 @@ import AddQuestionBubble from "@/Components/Question/AddQuestionBubble";
 import * as data from '@/Assets/Question.json'
 import { navigateGoBack } from "@/Navigators/utils";
 import DraggableFlatList, {ScaleDecorator} from "react-native-draggable-flatlist";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
+import { Pressable, TouchableOpacity } from "react-native";
 import { navigate } from "@/Navigators/utils";
 import { getData, storeData } from "@/Services/AsyncStorage";
-
-
+import { style } from "styled-system";
+import {StyleSheet} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 
 const PrepareContainer = (props) => {
 
@@ -55,6 +61,7 @@ const PrepareContainer = (props) => {
 
     const deleteOnPress = (currIndx) => {
         let newQ = [...draftQuestions]
+        console.log('deleteOnPress', currIndx, newQ)
         newQ.splice(currIndx, 1)
         setDraftQuestions(newQ)
     }
@@ -82,10 +89,11 @@ const PrepareContainer = (props) => {
         return (
             <ScaleDecorator>
                 <TouchableOpacity 
+                    style={styles.rowItem}
                     onLongPress={drag}
                     disabled={!edit}>
                     <QuestionBubble 
-                        color={"teal.400"} 
+                        color={"blue.300"} 
                         question={item.content} 
                         category={item.category}
                         edit={edit}
@@ -101,17 +109,34 @@ const PrepareContainer = (props) => {
                     justify="center"
                     p='6'
                     pb='4'
+                    align="center"
+                    width='100%'
                 >
                 <DraggableFlatList
                     ListHeaderComponent={() => (
                         <>
-                        <Button onPress={onPress}>Back</Button>
+                        {/* <Button onPress={onPress}>Back</Button> */}
+                        <Flex>
+                            <IconButton
+                                icon={<Icon as={Ionicons} name="arrow-back-circle-sharp"/>}
+                                onPress={onPress}
+                                borderRadius="full"
+                                _icon={{
+                                    color: "gray.500",
+                                    size: ["xl", "xl","xl","2xl"]
+                                  }}
+                                _pressed={{
+                                    bg: 'transparent',
+                                }}
+                                w='70'
+                            />
+                        </Flex>
                         <Text color='black' variant='title'>
                             Next Adventure
                         </Text>
-                        <Text color='black' variant='subtitle'>
+                        {/* <Text color='black' variant='subtitle'>
                             Questions are curated based on Hugo's age and the focus area you have identified
-                        </Text>    
+                        </Text>     */}
                         </> 
                     )}
 
@@ -120,28 +145,41 @@ const PrepareContainer = (props) => {
                     renderItem={renderEdit}
                     keyExtractor={(item, index) => String(index)}
                     nestedScrollEnabled={true}
-                    
+                    containerStyle={styles.dragList}
                     ListFooterComponent={() =>(
                         <>
+                        <Flex direction="column" justify='center' align='center' w='100%' >
                         {!edit &&
-                            <Button bg="teal.400" onPress={editOnPress}>Edit</Button>
+                            <Button  onPress={editOnPress} variant='parent' my='6'>Edit</Button>
                         }
                         {edit &&
                         <>
                             <AddQuestionBubble onPress={addOnPress}/>
-                            <Flex direction='row' justify='space-evenly'>
-                                <Button onPress={cancelOnPress}>Cancel</Button>
-                                <Button onPress={saveOnPress}>Save</Button>
+                            <Flex direction='row' justify='space-evenly' w='80%' my='6'>
+                                <Button onPress={cancelOnPress} variant='parent' bg='error.400'>Cancel</Button>
+                                <Button onPress={saveOnPress} variant='parent' bg='success.400'>Save</Button>
                             </Flex>
                         </>
                         }
+                        </Flex>
                         </>
                     )}
                 /> 
-                </Flex>
+            </Flex>
         </SafeAreaView>
     )
 
 }
+
+const styles = StyleSheet.create({
+    rowItem: {
+      alignItems: "center",
+      display:'flex',
+      justifyContent: 'center',
+    },
+    dragList:{
+        width:"100%",
+    }
+  });
 
 export default PrepareContainer

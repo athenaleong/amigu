@@ -1,6 +1,7 @@
 import React from 'react';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import {margin} from '@/Config/dynamicConfig.js';
+import { borderRadius } from 'styled-system';
 
 
 
@@ -17,6 +18,7 @@ const Theme = extendTheme({
             800:'#E1AE3F',
             900:'#DDA326'
         },
+
     },
     components: {
         TypeWriter: {
@@ -60,7 +62,24 @@ const Theme = extendTheme({
                     fontSize:[12, 16, 20, 24, 28],
                     textAlign:"center",
                     fontFamily:"BalooDa2_800ExtraBold",
-                }
+                },
+                subtitleXL: {
+                    fontWeight:"medium",
+                    fontSize:[20, 24, 28, 32, 36],
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_800ExtraBold",
+                },
+                subtitleLight: {
+                    fontWeight:"medium",
+                    fontSize:'sm',
+                    textAlign:"center",
+                    fontFamily:"BalooDa2_500Medium",
+                },
+                robotoSubtitle:{
+                    fontWeight:"medium",
+                    fontSize:[12, 16, 20, 24, 28],
+                    textAlign:"center",
+                },
             }
         },
         FAB: {
@@ -96,6 +115,19 @@ const Theme = extendTheme({
                     size: '600',
                 }
                 
+            }
+        },
+        Button: {
+            variants: {
+                parent: {
+                    bg:'lightBlue.400',
+                    rounded:24,
+                    _text:{
+                        fontFamily:"BalooDa2_500Medium",
+                        color:"white"
+                    },
+                    w:'100'
+                }
             }
         }
 

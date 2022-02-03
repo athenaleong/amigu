@@ -37,10 +37,11 @@ const TreasureBubble = (props) => {
             <Image
                 source= {display? {'uri': data.url} : question}
                 alt='Wave'
-                size='80%'
+                size='70%'
                 key={display}
+                resizeMode="contain"
             />
-            {display && <Text>
+            {display && <Text variant='subtitle' color='white'>
                 {data.name}
             </Text>}
         </Flex>

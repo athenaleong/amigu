@@ -31,7 +31,7 @@ const FishContainer = (props) => {
 
     const treasureOnPress = (idx) => {
         if (collected[idx]) {
-            setSelected({'uri' : mockURL.treasure[idx].gif});
+            setSelected({'uri' : data[idx].gif});
         }
         else {
             setSelected(Question);
@@ -56,11 +56,13 @@ const FishContainer = (props) => {
             <Box height='100%' width={'60%'}>
                 <ImageBackground source={FishBackground} resizeMode='cover' style={styles.image}>
                     <Flex direction='column' align='center'>
-                            <Text color='white' variant='subtitleL'>Aquarium</Text>
+                            <Text color='white' variant='subtitleXL'>Aquarium</Text>
 
                         <Image 
                             source={selected} key={count}
-                            alt="penguin" size={ImageSizeNum}/>
+                            alt="penguin" size={ImageSizeNum}
+                            borderRadius={300}
+                            />
                     </Flex>
 
                 </ImageBackground>
