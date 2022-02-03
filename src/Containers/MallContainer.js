@@ -34,6 +34,7 @@ const MallContainer = (props) => {
             showModal('loading')
             const res = await axios.get('https://tweeby-backend.herokuapp.com/allTreasures');
             const payload = res.data.payload;
+            console.log(payload)
 
             //Update Treasure Data with `collected` field 
             const collectedTreasure = await getData('@frontend:treasureCollection');
@@ -59,7 +60,7 @@ const MallContainer = (props) => {
             <SafeAreaView>
                 <Flex  w="100%" h="100%">
                     <Text color="black" variant='title'>Mall</Text>
-                    <Flex direction='row' justify='center'>
+                    <Flex direction='row' justify='center' align='center' h='100%'>
                     {
                         treasureData.map((item, idx) => {
                             return (
