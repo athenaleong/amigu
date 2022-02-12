@@ -5,16 +5,25 @@ import {
     Image,
     Button,
     Spacer,
-    Fab
+    Fab,
 } from 'native-base'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Still from '@/Assets/still.png'
+import RewardBar from '@/Components/Progress/RewardBar'
+import { ImageSize } from '@/Config/penguinConfig.js'
+
+
 
 const ExperienceView = (props) => {
 
     return (
-        <>
-        <Text>{"WOW! Thank you for letting me know "}</Text>
-        <Fab variant='next' onPress={props.onPress}/>
-        </>
+        <SafeAreaView>
+            <Flex h='100%' w='100%' direction='column' justify='center' align='center'>
+                <Image source={Still} variant={ImageSize} alt='penguin'></Image>
+                <RewardBar petName='Tweeby' amount='9'/>
+                <Fab variant='next' onPress={props.onPress}/>
+            </Flex>
+        </SafeAreaView>
     )
 }
 

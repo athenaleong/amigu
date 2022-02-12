@@ -28,7 +28,8 @@ const DialogueView = (props) => {
     }
 
     useEffect(() => {
-        setTyped(false);
+        //TODO: change this to false
+        setTyped(true);
     },[chat])
 
     return (
