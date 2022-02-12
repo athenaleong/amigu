@@ -24,7 +24,7 @@ const App = () => {
                     ['@frontend:parentAddress', 'Dad'],
                     ['@frontend:petHeight', '30'],
                     ['@frontend:petWeight', '0.5'],
-                    ['@frontend:numAdventure', '0'],
+                    ['@frontend:numAdventures', '0'],
 
                   ])
 

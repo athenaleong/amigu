@@ -105,7 +105,7 @@ const AdventureContainer = () => {
        (async() => {
         showModal('start');
         let newQuestions = await getData('@frontend:newQuestions');
-        
+        console.log(newQuestions)
         setAllScene(newQuestions);
         //Get a new set of treasures
         const oldTreasure = await getData('@frontend:treasureCollection');

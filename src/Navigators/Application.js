@@ -16,7 +16,7 @@ import MallContainer from '@/Containers/MallContainer';
 import DanceContainer from '@/Containers/StoreContainer/DanceContainer'
 import FishContainer from '@/Containers/StoreContainer/FishContainer'
 import FidgetContainer from '@/Containers/StoreContainer/FidgetContainer'
-
+import IntroductionContainer from '@/Containers/IntroductionContainer'
 
 const Stack = createStackNavigator()
 
@@ -27,6 +27,7 @@ const ApplicationNavigator = () => {
             <StatusBar/>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
+                        <Stack.Screen name="Introduction" component={IntroductionContainer} />
                         <Stack.Screen  name="Parent" component={ParentContainer}/>
                         <Stack.Screen  name="Pet" component={PetContainer}/>
                         <Stack.Screen  name="Stats" component={StatsContainer}/>
