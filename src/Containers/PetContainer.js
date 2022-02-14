@@ -18,16 +18,27 @@ import { ImageSize } from '@/Config/penguinConfig.js'
 import { Audio } from 'expo-av';
 import {BackgroundMusic} from '@/Components/Audio'
 import {Animated} from 'react-native'
+import {getData} from '@/Services/AsyncStorage';
+
 
 
 
 // Starting container for an adventure
 const PetContainer = (props) => {
 
+    const [numAdventures, setNumAdventures] = useState(0);
+
     async function onPress() {
         console.log('hello')
         navigate('Adventure')
     }
+
+    useLayoutEffect(() => {
+        (async() => {
+            let numAdventures = await getData('@frontend:numAdventures');
+            setNumAdventures(parseInt(numAdventures))
+        })();
+    }, [])
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
@@ -36,7 +47,10 @@ const PetContainer = (props) => {
                 {/* <FabComponent /> */}
                 <Flex h='100%' w='100%' direction='column' align='center' justify='center'>
                     <Image source={Still} variant={ImageSize} alt='penguin'></Image>
-                    <Button onPress={onPress}> Start Adventure</Button>
+
+                    {numAdventures === 0 && 
+                        <Button onPress={onPress}>Say Hi</Button>
+                    }
                 </Flex>
                 <LeftBar />
                 <TopBar leftItems={['parent']}/>

@@ -1,0 +1,18 @@
+{
+    "data": 
+    [
+        {
+            "frameType": "video"
+            
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ". . .",
+            "petType": 4
+        },
+        {
+            "frameType":"textInput"
+        }
+    ]
+}
+
