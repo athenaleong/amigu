@@ -129,6 +129,17 @@ const Theme = extendTheme({
                     w:'100'
                 }
             }
+        },
+        Input : {
+            variants: {
+                name: {
+                    bg:'white',
+                    fontWeight:"bold",
+                    fontFamily:"BalooDa2_500Medium",
+                    textAlign:'center',
+                    rounded:32,
+                }
+            }
         }
 
     }

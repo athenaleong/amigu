@@ -11,49 +11,8 @@
             "petType": 4
         },
         {
-            "frameType": "dialogue",
-            "chat": ". . .",
-            "petType": 6
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "Hello...",
-            "petType": 4
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "What's your name?",
-            "petType": 3
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "I am looking for friends to go on adventures with!",
-            "petType": 4
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "You seem like a really nice person...",
-            "petType": 4
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "Would you like to join me?",
-            "petType": 6
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "Yay!! That is so exciting.",
-            "petType": 2
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "I can't wait to learn more about you along the way.",
-            "petType": 4
-        },
-        {
-            "frameType": "dialogue",
-            "chat": "Are you ready? Let's go!",
-            "petType": 2
+            "frameType":"textInput"
         }
     ]
 }
+

@@ -21,6 +21,7 @@ import ExperienceView from '@/Components/Adventure/ExperienceView';
 import TreasureView from '@/Components/Adventure/TreasureView'
 import * as frameData from '@/Assets/Introduction.json';
 import VideoView from '@/Components/Video/VideoView';
+import TextInput from '@/Components/TextInput';
 
 
 const IntroductionContainer = () => {
@@ -51,6 +52,8 @@ const IntroductionContainer = () => {
                 return <DialogueView chat={chat} petType={imgArray[petType]} onPress={nextOnPress}></DialogueView>
             case 'video':
                 return <VideoView onPress={nextOnPress} source={require('/Assets/video/short.mp4')}></VideoView>
+            case 'textInput':
+                return <TextInput onPress={nextOnPress} question="What's Your Name?" placeholder='' asyncStorageName='frontend@childName'></TextInput>
         }
     }
 
