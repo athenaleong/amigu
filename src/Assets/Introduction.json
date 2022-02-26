@@ -13,8 +13,11 @@
             "frameType":"textInput"
         },
         {
+            "frameType": "transition"
+        },
+        {
             "frameType": "dialogue",
-            "chat": ["that’s an amazing name!", "I was just about to go on an adventure around the ocean. You should totally come along!","Let’s get to know each other a little better.. maybe we'll meet some new friends along the way!"],
+            "chat": ["That’s an amazing name!", "I was just about to go on an adventure around the ocean. You should totally come along!","Let’s get to know each other a little better.. maybe we'll meet some new friends along the way!"],
             "petType": ["4", "2", "4"]
         },
         {
@@ -22,13 +25,48 @@
         },
         {
             "frameType": "dialogue",
-            "chat": ["Can you tell my favorite colour is blue?", "Blue is the colour of my feathers.. And the colour of ocean!", "What color makes you happy? What does it remind you of?", "That’s really cool!! Honestly, there are so many colours in the world, my favourite changes everyday! "],
-            "petType": ["3", "4", "6", "2"]
-
+            "chat": ["Can you tell my favorite colour is blue?", "Blue is the colour of my feathers.. And the colour of ocean!", "What color makes you happy?" , "What does it remind you of?", "That’s really cool!! Honestly, there are so many colours in the world, my favourite changes everyday! "],
+            "petType": ["3", "4", "6", "4", "2"]
         },
-        
-
+        {
+            "frameType": "experience"
+        },
+        {
+            "frameType": "treasure",
+            "treasureDetail": {
+                "gif": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-gif/turtle.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLWdpZi90dXJ0bGUuZ2lmIiwiaWF0IjoxNjQzODY1NjgxLCJleHAiOjE5NTkyMjU2ODF9.UAQ6r9sJD6n1lADcqXJ8rpAYH_4QZmGhh8q_zNaI7v8",
+                "id": 2015,
+                "name": "tiago the turtle",
+                "type": "fish",
+                "url": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/turtle.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3R1cnRsZS5wbmciLCJpYXQiOjE2NDM4NjU3OTEsImV4cCI6MTk1OTIyNTc5MX0.aPT_2PB6a1Y5zxNjljD2MA51zH22fulz66M2ANG_23s",
+              }
+        },
+        {
+            "frameType": "experience"
+        },
+        {
+            "frameType": "treasure",
+            "treasureDetail": {
+                "gif": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-gif/puffer.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLWdpZi9wdWZmZXIuZ2lmIiwiaWF0IjoxNjQzODY1NjA1LCJleHAiOjE5NTkyMjU2MDV9.iYNAy7jW1LfaFfADSWTmfZ4FxuGf50Qn-R56zfgeaSo",
+                "id": 2011,
+                "name": "preston the pufferfish",
+                "type": "fish",
+                "url": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/puffer.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3B1ZmZlci5wbmciLCJpYXQiOjE2NDM4NjU3NDQsImV4cCI6MTk1OTIyNTc0NH0.bUAjS51P9oMLYsURcfF0pzIGAZ7dvFjfj1rnsizO_ww",
+            }
+        },
+        {
+            "frameType": "experience"
+        },
+        {
+            "frameType": "treasure",
+            "treasureDetail": {
+                "gif": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-gif/seal.gif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLWdpZi9zZWFsLmdpZiIsImlhdCI6MTY0Mzg3MDY1MywiZXhwIjoxOTU5MjMwNjUzfQ.iEIUzkm4eUbYHBjnkjM6OPYjc8ig1jVguuS2ZbTrZqY",
+                "id": 2012,
+                "name": "sahitya the seal",
+                "type": "fish",
+                "url": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/seal.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3NlYWwucG5nIiwiaWF0IjoxNjQzODY1NzQ5LCJleHAiOjE5NTkyMjU3NDl9.KKmWk2-FKIfBqos5uYeFPdRSS5aSGHidie9Hlu0HPPE",
+            }
+        } 
     ]
 }
 
-const imgArray = {'1': AngryPenguin, '2': CheerPenguin, '3': ConfusedPenguin, '4': SmilePenguin, '5': SadPenguin, '6': ThinkingPenguin, "7": WavingPenguin};

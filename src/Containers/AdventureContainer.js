@@ -62,7 +62,7 @@ const AdventureContainer = () => {
 
         if (nextFrameIdx == state.maxFrame) {
             //Show Transition
-            showModal('transition');
+            showModal('start');
 
              //Add current treausre into collected
              if (currScene.treasure) {
@@ -135,6 +135,7 @@ const AdventureContainer = () => {
                 return <ExperienceView onPress={nextOnPress}/>
             case 'treasure':
                 const detail = currScene.treasureDetail
+                console.log(detail);
                 return <TreasureView detail={detail} onPress={nextOnPress}/>
             case 'end':
                 return <Text>End</Text>

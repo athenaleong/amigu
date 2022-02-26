@@ -43,7 +43,7 @@ const ParentContainer = () => {
     }, [])
 
     const onPress = async () => {
-      showModal('transition');
+      showModal('start');
 
       //Curate new Questions via API call and save to Async Storage
       let usedQuestions = await getData('@frontend:usedQuestions')

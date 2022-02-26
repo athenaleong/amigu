@@ -21,7 +21,7 @@ const customIndicator = () => {
 const TransitionScene = (props) => {
 
     const translateValue = new Animated.Value(0);
-
+    const {onPress} = props;
 
 
     useEffect(() => {
@@ -31,10 +31,12 @@ const TransitionScene = (props) => {
             toValue: 1,
             duration: 2500,
             easing: Easing.linear,
-        }).start(() => translate());
+        }).start(() => onPress());
         };
 
-        translate();
+        if (onPress) {
+         translate();
+        }
     }, [translateValue]);
 
     const translateAnimation = translateValue.interpolate({

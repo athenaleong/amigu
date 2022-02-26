@@ -10,7 +10,7 @@ import {
 } from 'native-base'
 import Still from '@/Assets/still.png'
 import { ImageSize } from '@/Config/penguinConfig.js'
-import Question from '@/Assets/question-mark.png'
+import Question from '@/Assets/question-mark-blue.png'
 
 
 const TreasureView = (props) => {
@@ -26,13 +26,13 @@ const TreasureView = (props) => {
 
     return (
         <Flex direction='column' h='100%' w='100%' align='center' justify='center'>
-        <Text variant='subtitleXL' color='white'>I made a new friend!</Text>
+        <Text variant='title' color='white'>I made a new friend!</Text>
         {
             !showTreasure &&
             <>
             <Pressable onPress={onPress} w='50%' h='80%'>
-                <Flex borderRadius={50} bg='amber.400'  align='center' justify='center'>
-                    <Image source={Question} resizeMode='contain' h='80%' alt='reveal for surprise'/>
+                <Flex borderRadius={50} bg='blue.400'  align='center' justify='center'>
+                    <Image source={Question} resizeMode='contain' h='80%' alt='tap for surprise'/>
                 </Flex>
             </Pressable>
             </>
@@ -45,7 +45,7 @@ const TreasureView = (props) => {
                 <Image source={Still} variant={ImageSize} alt='penguin'></Image>
                 <Image source={{uri: detail.url}} variant={ImageSize} resizeMode='contain' alt='friend'></Image>
             </Flex>
-            <Text variant='subtitleL' color='white'> Can you tell who they are?</Text>
+            <Text variant='subtitleXL' color='white'>{detail.name}</Text>
 
             <Fab variant='next' onPress={props.onPress}/>
             </>
