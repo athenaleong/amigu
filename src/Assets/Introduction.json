@@ -2,17 +2,33 @@
     "data": 
     [
         {
-            "frameType": "video"
-            
+            "frameType": "transition"
         },
         {
             "frameType": "dialogue",
-            "chat": ". . .",
-            "petType": 4
+            "chat": [". . .","HIIIII..", "You look really friendly. Would you like to be my friend?", "I would love to be your friend too! What’s your name?"],
+            "petType": ["6","7","6","2"]
         },
         {
             "frameType":"textInput"
-        }
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["that’s an amazing name!", "I was just about to go on an adventure around the ocean. You should totally come along!","Let’s get to know each other a little better.. maybe we'll meet some new friends along the way!"],
+            "petType": ["4", "2", "4"]
+        },
+        {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["Can you tell my favorite colour is blue?", "Blue is the colour of my feathers.. And the colour of ocean!", "What color makes you happy? What does it remind you of?", "That’s really cool!! Honestly, there are so many colours in the world, my favourite changes everyday! "],
+            "petType": ["3", "4", "6", "2"]
+
+        },
+        
+
     ]
 }
 
+const imgArray = {'1': AngryPenguin, '2': CheerPenguin, '3': ConfusedPenguin, '4': SmilePenguin, '5': SadPenguin, '6': ThinkingPenguin, "7": WavingPenguin};

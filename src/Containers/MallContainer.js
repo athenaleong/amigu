@@ -25,7 +25,7 @@ const MallContainer = (props) => {
 
     const treasureOnPress = (idx) => {
         console.log('hey')
-        navigate(['DanceStore', 'FishStore', 'FidgetStore'][idx], treasureData[idx]);
+        navigate(['FishStore', 'FishStore', 'FishStore'][idx], treasureData[idx]);
     }
 
     useLayoutEffect(() => {

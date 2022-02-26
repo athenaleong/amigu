@@ -27,13 +27,11 @@ const ApplicationNavigator = () => {
             <StatusBar/>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
-                        <Stack.Screen name="Introduction" component={IntroductionContainer} />
-                        <Stack.Screen  name="Parent" component={ParentContainer}/>
+                        <Stack.Screen  name="Intro" component={IntroductionContainer}/>
                         <Stack.Screen  name="Pet" component={PetContainer}/>
+                        <Stack.Screen  name="Parent" component={ParentContainer}/>
                         <Stack.Screen  name="Stats" component={StatsContainer}/>
-                        {/* <Stack.Screen name="Main" component={MainNavigator} /> */}
                         <Stack.Screen  name="Adventure" component={AdventureContainer}/>
-                        {/* <Stack.Screen  name="Prepare" component={PrepareContainer}/> */}
                         <Stack.Screen  name="Prepare" component={PrepareContainer}/>
                         <Stack.Screen  name="Question" component={QuestionContainer}/>
                         <Stack.Screen name="Treasure" component={TreasureContainer}/>

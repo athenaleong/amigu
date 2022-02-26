@@ -2,10 +2,15 @@ import React, {useEffect} from "react"
 import {
   Modal,
   Text,
-  Image
-} from 'native-base'
-import Spinner from 'react-native-loading-spinner-overlay';
-import Wave from '@/Assets/wave.gif'
+  Image,
+  Flex
+} from 'native-base';
+import Wave from '@/Assets/wave.gif';
+import Waddle from '@/Assets/penguin/Waddle.gif';
+import Waddle2 from '@/Assets/penguin/Waddle2.gif';
+import { Animated, Easing, Dimensions, ImageBackground } from 'react-native';
+import Background from '@/Assets/background/under-the-sea.jpeg'
+const AnimatedBackground = Animated.createAnimatedComponent(ImageBackground)
 
 const customIndicator = () => {
     return (
@@ -15,25 +20,49 @@ const customIndicator = () => {
 
 const TransitionScene = (props) => {
 
-    useEffect(() => {
-        // console.log('hi')
-        // console.log(props.loading)
+    const translateValue = new Animated.Value(0);
 
-    },[])
+
+
+    useEffect(() => {
+        const translate = () => {
+        translateValue.setValue(0);
+        Animated.timing(translateValue, {
+            toValue: 1,
+            duration: 2500,
+            easing: Easing.linear,
+        }).start(() => translate());
+        };
+
+        translate();
+    }, [translateValue]);
+
+    const translateAnimation = translateValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: [-290, 290],
+    });
+
+
 
     return (
-    //     <Modal isOpen={true} transparent={false} presentationStyle='fullScreen' > 
-    //     <Modal.Content width="100%" height='100%'>
-    //       <Modal.Body>
-    //           <Text>HELLO</Text>
-    //       </Modal.Body>
-    //     </Modal.Content>
-    //   </Modal>
-        <Spinner 
-            visible={props.visible} 
-            overlayColor='rgba(34, 211, 238, 1)'
-            customIndicator={customIndicator()} 
-        />
+        <AnimatedBackground     
+                source={Background}
+                resizeMode='cover'
+                style={{
+                    height:'100%',
+                    transform: [
+                        {translateX: translateAnimation,},
+                    
+                    ]
+                }}
+        > 
+        <Flex align='center' justifyContent='center' w='100%' h='100%'>
+            <Image source={Waddle} size='2xl' alt='waddling'/>
+        </Flex>
+        </AnimatedBackground>
+
+
+ 
     )
 }
 
