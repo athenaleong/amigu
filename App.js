@@ -38,7 +38,7 @@ const [assetsLoaded, setAssetsLoaded] = useState(false);
                   ])
 
     //TODO: Get Treasure Name dynamically 
-    await storeData('@frontend:treasureCollection', {'dance':[1003, 1007], 'fish':[2004, 2006, 2007], 'fidgets':[3005]})
+    await storeData('@frontend:treasureCollection', {'dance':[1003, 1007], 'fish':[], 'fidgets':[3005]})
     await storeData('@frontend:newQuestions', []);
     await storeData('@frontend:usedQuestions', []);
   }

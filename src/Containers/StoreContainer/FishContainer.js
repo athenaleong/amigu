@@ -76,7 +76,7 @@ const FishContainer = (props) => {
                 <ScrollView>
                     <Flex m={margin}>
                         <Text variant='title' color='white'> {props.route.params.collected.length} / {collected.length} </Text>
-                        <Text variant='subtitleL' color='white'> Collected</Text>
+                        <Text variant='subtitleL' color='white'> Friends</Text>
                     </Flex>
                     <Flex
                         direction="row"

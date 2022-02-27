@@ -5,9 +5,6 @@
             "frameType": "video"
         },
         {
-            "frameType": "transition"
-        },
-        {
             "frameType": "dialogue",
             "chat": [". . .","HIIIII..", "You look really friendly. Would you like to be my friend?", "I would love to be your friend too! What’s your name?"],
             "petType": ["7","7","6","2"],
