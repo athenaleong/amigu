@@ -67,7 +67,7 @@ const IntroductionContainer = () => {
         
         let currTreasure = {'fish': [2011, 2012, 2015]};
         await storeData('@frontend:treasureCollection', currTreasure);
-        await storeData('@frontend:numFish', '27');
+        await storeData('@frontend:numFish', '45');
         await storeData('@frontend:numAdventures', '1');
 
         // hideModal();

@@ -20,7 +20,7 @@ const ExperienceView = (props) => {
         <SafeAreaView>
             <Flex h='100%' w='100%' direction='column' justify='center' align='center'>
                 <Image source={Still} variant={ImageSize} alt='penguin'></Image>
-                <RewardBar petName='I' amount='9'/>
+                <RewardBar petName='We' amount='9'/>
                 <Fab variant='next' onPress={props.onPress}/>
             </Flex>
         </SafeAreaView>

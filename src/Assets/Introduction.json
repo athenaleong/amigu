@@ -10,7 +10,7 @@
         {
             "frameType": "dialogue",
             "chat": [". . .","HIIIII..", "You look really friendly. Would you like to be my friend?", "I would love to be your friend too! What’s your name?"],
-            "petType": ["6","7","6","2"],
+            "petType": ["7","7","6","2"],
             "bg": 2
         },
         {
@@ -18,7 +18,7 @@
         },
         {
             "frameType": "dialogue",
-            "chat": ["That’s an amazing name!", "I was just about to go on an adventure around the ocean. You should totally come along!","Let’s get to know each other a little better.. maybe we'll meet some new friends along the way!"],
+            "chat": ["That’s an amazing name!", "I was just about to go on an adventure around the ocean. \n You should totally come along!","Let’s get to know each other a little better.. \n maybe we'll meet some new friends along the way!"],
             "petType": ["4", "2", "4"],
             "bg": 2
         },
@@ -27,8 +27,8 @@
         },
         {
             "frameType": "dialogue",
-            "chat": ["Can you tell my favorite colour is blue?", "Blue is the colour of my feathers.. And the colour of ocean!", "What color makes you happy?" , "What does it remind you of?", "That’s really cool!! Honestly, there are so many colours in the world, my favourite changes everyday! "],
-            "petType": ["3", "4", "6", "4", "2"],
+            "chat": ["Can you tell my favorite colour is blue?", "Blue is the colour of my feathers.. And the colour of ocean!", "What color makes you happy?" , "What does it remind you of?", "That’s really cool! \n Honestly, there are so many colours in the world, my favourite changes everyday! "],
+            "petType": ["2", "4", "6", "4", "2"],
             "bg": 1
         },
         {
@@ -45,6 +45,27 @@
               }
         },
         {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["I love to watch the clouds that are very big and fluffy.", "They look like cotton candy…", "Do you have something you like to do outside?", "Wow, that sounds fun! \n You should do it again soon and tell me all about it later"],
+            "petType": ["4", "2", "3", "4"],
+            "bg": 1
+        },
+        {
+            "frameType": "experience"
+        },
+        {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["I am starting to miss my mom… she is my favorite person.", "She makes me feel warm and cuddly inside.", "Who are you excited to see everyday?", "They seem like a great person! Isn't it amazing we have people we love? \n We should treasure our time with them!"],
+            "petType": ["5", "4", "6", "2", "4"],
+            "bg": 1
+        },
+        {
             "frameType": "experience"
         },
         {
@@ -58,6 +79,27 @@
             }
         },
         {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["I am really good at swimming.", "I want to be a swimmer when I grow up.", "How about you?"],
+            "petType": ["6", "2", "4"],
+            "bg": 1
+        },
+        {
+            "frameType": "experience"
+        },
+        {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["I really like my feathers! They are super fuzzy and I love how soft I am!", "What’s something you like about yourself?", "I love that about you too! I think we will be great friends."],
+            "petType": ["2", "4", "2"],
+            "bg": 1
+        },
+        {
             "frameType": "experience"
         },
         {
@@ -69,7 +111,16 @@
                 "type": "fish",
                 "url": "https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/seal.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3NlYWwucG5nIiwiaWF0IjoxNjQzODY1NzQ5LCJleHAiOjE5NTkyMjU3NDl9.KKmWk2-FKIfBqos5uYeFPdRSS5aSGHidie9Hlu0HPPE",
             }
-        } 
+        }, 
+        {
+            "frameType": "transition"
+        },
+        {
+            "frameType": "dialogue",
+            "chat": ["This has been such a fun adventure!", "I love getting to know you and I can’t wait to keep exploring with you.", "Once we have gathered enough fish, we can travel to more places!", "See you later!"],
+            "petType": ["2", "4", "2", "7"],
+            "bg": 2
+        }
     ]
 }
 
