@@ -6,7 +6,7 @@ import {
     Button,
 } from 'native-base';
 import {ImageBackground, StyleSheet} from 'react-native';
-import Background from '@/Assets/background/background.png'
+import Background from '@/Assets/background/arctic-background.jpeg'
 import ModalView from "@/Components/Modal/ModalView";
 import useModal from "@/Hooks/useModal";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -64,7 +64,11 @@ const MallContainer = (props) => {
                     {
                         treasureData.map((item, idx) => {
                             return (
-                                <Button onPress={() => treasureOnPress(idx)} key={idx} >{item.type}</Button>    
+                                <Button variant='action' bgColor='amber.400' onPress={() => treasureOnPress(idx)} key={idx} >
+                                     <Text variant='subtitleXL' color='white'>
+                                        Ocean Friends
+                                    </Text>
+                                </Button>    
                             )
                         })
                     }

@@ -49,7 +49,7 @@ const DialogueView = (props) => {
             <Flex direction='column' align='center' justify='space-between' h='100%' w='100%' p={margin}>
                 <Spacer/>
                 <Image variant={ImageSize} source={petType} alt='image' key={petType}/>
-                <Flex p='4' bg='beige.100' m='4' borderRadius='30' w='100%' h={['35%','35%','35%', '25%', '25%']}  borderColor='beige.400' borderWidth='10'>
+                <Flex wrap='wrap' p='4' bg='beige.100' m='4' borderRadius='30' w='100%' h={['35%','35%','35%', '25%', '25%']}  borderColor='beige.400' borderWidth='10'>
                     <TypeWriter style={styles.text} typing={1} onTypingEnd={onTypingEnd}>{chat}</TypeWriter>
                     {/* <Text variant='subtitle'> {petType}</Text> */}
                     
