@@ -7,8 +7,6 @@ import {
 } from 'native-base'
 import useModal from '@/Hooks/useModal';
 
-
-
 import AngryPenguin from '@/Assets/penguin/Angry.png';
 import CheerPenguin from '@/Assets/penguin/Cheer.png';
 import ConfusedPenguin from '@/Assets/penguin/Confused.png';
@@ -25,6 +23,12 @@ import VideoView from '@/Components/Video/VideoView';
 import TextInput from '@/Components/TextInput';
 import ModalView from '@/Components/Modal/ModalView';
 import TransitionScene from '../Components/Modal/TransitionScene';
+import { navigateAndSimpleReset } from '@/Navigators/utils';
+import SeaBackground from '@/Assets/background/fish-background.jpeg';
+import ArcticBackground from '@/Assets/background/arctic-background.jpeg';
+
+import { storeData } from '../Services/AsyncStorage';
+
 
 
 
@@ -41,16 +45,37 @@ const IntroductionContainer = () => {
         setAllFrame(frameData.data);
     })
 
-    function nextOnPress() {
-        console.log('apparently you pressed me')
-        setCurrFrame(currFrame + 1);
+    async function nextOnPress() {
+        // console.log('apparently you pressed me')
+        // console.log(currFrame)
+        // console.log(frameData.data.length)
+        if (currFrame == frameData.data.length - 1) {
+            await endAdventure();
+            navigateAndSimpleReset('Pet')
+        }
+        else {
+            setCurrFrame(currFrame + 1);
+        }
+    }
 
+    //TODO: Put store treasure into a function on its own 
 
+    async function endAdventure() {
+        // showModal('loading');
 
-        //TODO: Add friends and fish at the end 
+        //Store treasure into treasureCollection
+        
+        let currTreasure = {'fish': [2011, 2012, 2015]};
+        await storeData('@frontend:treasureCollection', currTreasure);
+        await storeData('@frontend:numFish', '27');
+        await storeData('@frontend:numAdventures', '1');
+
+        // hideModal();
+
     }
 
     const imgArray = {'1': AngryPenguin, '2': CheerPenguin, '3': ConfusedPenguin, '4': SmilePenguin, '5': SadPenguin, '6': ThinkingPenguin, "7": WavingPenguin};
+    const bgArray = {'1': SeaBackground, '2': ArcticBackground}
 
     function renderFrame(frame) {
         const frameType = frame.frameType;
@@ -61,6 +86,7 @@ const IntroductionContainer = () => {
                 const chat = frame.chat[currDialogueFrame]
                 const petType = frame.petType[currDialogueFrame]
                 const length = frame.chat.length
+                const bg = frame.bg
 
                 function dialogueOnPress() {
                     if (currDialogueFrame == length - 1) {
@@ -71,7 +97,7 @@ const IntroductionContainer = () => {
                         setCurrDialogueFrame(currDialogueFrame + 1)
                     }
                 }
-                return <DialogueView chat={chat} petType={imgArray[petType]} onPress={dialogueOnPress}></DialogueView>
+                return <DialogueView chat={chat} petType={imgArray[petType]} onPress={dialogueOnPress} backgroundImage={bgArray[bg]}></DialogueView>
             case 'video':
                 return <VideoView onPress={nextOnPress} source={require('/Assets/video/short.mp4')}></VideoView>
             

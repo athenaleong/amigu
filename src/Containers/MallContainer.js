@@ -59,7 +59,7 @@ const MallContainer = (props) => {
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
             <SafeAreaView>
                 <Flex  w="100%" h="100%">
-                    <Text color="black" variant='title'>Mall</Text>
+                    <Text color="black" variant='title'>Friends</Text>
                     <Flex direction='row' justify='center' align='center' h='100%'>
                     {
                         treasureData.map((item, idx) => {

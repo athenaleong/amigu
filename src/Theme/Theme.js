@@ -1,7 +1,7 @@
 import React from 'react';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import {margin} from '@/Config/dynamicConfig.js';
-import { borderRadius } from 'styled-system';
+import { borderRadius, fontSize } from 'styled-system';
 
 
 
@@ -127,6 +127,17 @@ const Theme = extendTheme({
                         color:"white"
                     },
                     w:'100'
+                },
+                action : {
+                    bg:'lightBlue.400',
+                    rounded:32,
+                    _text:{
+                        fontFamily:"BalooDa2_500Medium",
+                        color:"white",
+                        fontSize:'4xl'
+                    },
+                    w:'200',
+                    py:'2',
                 }
             }
         },

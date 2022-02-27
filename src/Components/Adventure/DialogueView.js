@@ -8,32 +8,44 @@ import {
     Fab
 } from 'native-base'
 import { ImageBackground, StyleSheet } from 'react-native';
-import Background from '@/Assets/background/background.png';
+import Background from '@/Assets/background/fish-background.jpeg';
 import { ImageSize } from '@/Config/penguinConfig.js'
 import {margin} from '@/Config/dynamicConfig.js';
 import Still from '@/Assets/still.png';
 import TypeWriter from 'react-native-typewriter'
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Dimensions } from 'react-native';
+import {BackgroundMusic} from '@/Components/Audio'
+import { Audio } from 'expo-av';
+
+
 
 const DialogueView = (props) => {
 
 
     const { width, height } = Dimensions.get('window'); 
-    const {chat, petType} = props;
+    const {chat, petType, backgroundImage, onPress} = props;
     const [typed, setTyped] = useState(false);
+
+    const [sound, setSound] = useState(new Audio.Sound());
+    const musicFile = require('@/Assets/music/Chirp.mp3');
 
     function onTypingEnd() {
         setTyped(true);
     }
 
     useEffect(() => {
-        //TODO: change this to false
-        setTyped(true);
+        //TODO: change this to false 
+        setTyped(true);   
     },[chat])
 
+    async function nextOnPress() {
+        onPress();
+        await sound.replayAsync(); 
+    }
+
     return (
-        <ImageBackground source={Background} resizeMode='cover' style={styles.image} h='100%' w='100%'>
+        <ImageBackground source={backgroundImage} resizeMode='stretch' style={styles.image} h='100%' w='100%'>
             <Flex direction='column' align='center' justify='space-between' h='100%' w='100%' p={margin}>
                 <Spacer/>
                 <Image variant={ImageSize} source={petType} alt='image' key={petType}/>
@@ -42,9 +54,9 @@ const DialogueView = (props) => {
                     {/* <Text variant='subtitle'> {petType}</Text> */}
                     
                 </Flex>
-                {typed && <Fab variant='next' onPress={props.onPress}/>}
+                {typed && <Fab variant='next' onPress={nextOnPress}/>}
             </Flex>
-            
+            <BackgroundMusic file={musicFile} sound={sound}/>
         </ImageBackground>
     )
 }

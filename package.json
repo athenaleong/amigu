@@ -28,6 +28,8 @@
     "axios": "^0.24.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "expo": "~42.0.0",
+    "expo-app-loading": "1.1.2",
+    "expo-asset": "~8.3.3",
     "expo-av": "~9.2.3",
     "expo-font": "~9.2.1",
     "expo-screen-orientation": "~3.3.0",

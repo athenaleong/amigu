@@ -9,7 +9,6 @@ import {
 import Still from '@/Assets/still.png'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigateAndSimpleReset, navigate } from '@/Navigators/utils';
-import { FabComponent } from '@/Components/Fab';
 import { TopBar } from '@/Components/TopBar'
 import { LeftBar } from '@/Components/LeftBar';
 import {ImageBackground, StyleSheet} from 'react-native';
@@ -21,16 +20,19 @@ import {Animated} from 'react-native'
 import {getData} from '@/Services/AsyncStorage';
 
 
-
+//TODO: use hooks for audio
 
 // Starting container for an adventure
 const PetContainer = (props) => {
 
     const [numAdventures, setNumAdventures] = useState(0);
+    const [sound, setSound] = useState(new Audio.Sound());
 
     async function onPress() {
-        console.log('hello')
-        navigate('Adventure')
+        if (sound) {
+            await sound.unloadAsync();
+        }
+        navigate('Intro')
     }
 
     useLayoutEffect(() => {
@@ -39,6 +41,8 @@ const PetContainer = (props) => {
             setNumAdventures(parseInt(numAdventures))
         })();
     }, [])
+
+    const musicFile = require('@/Assets/music/Calm-Forest-Birds.mp3')
 
     return (
         <ImageBackground source={Background} resizeMode="cover" style={styles.image}>
@@ -49,7 +53,9 @@ const PetContainer = (props) => {
                     <Image source={Still} variant={ImageSize} alt='penguin'></Image>
 
                     {numAdventures === 0 && 
-                        <Button onPress={onPress}>Say Hi</Button>
+                        <Button variant='action' onPress={onPress}>
+                            <Text variant='subtitleXL' color='white'>Say Hi! </Text>
+                        </Button>
                     }
                 </Flex>
                 <LeftBar />
@@ -57,7 +63,7 @@ const PetContainer = (props) => {
             </Flex> 
             
         </SafeAreaView>
-        <BackgroundMusic file='@/Assets/music/Calm-Forest-Birds.mp3'/>
+        <BackgroundMusic file={musicFile} sound={sound}/>
         
         </ImageBackground>
     )

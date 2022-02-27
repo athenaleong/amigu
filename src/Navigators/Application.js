@@ -17,7 +17,7 @@ import DanceContainer from '@/Containers/StoreContainer/DanceContainer'
 import FishContainer from '@/Containers/StoreContainer/FishContainer'
 import FidgetContainer from '@/Containers/StoreContainer/FidgetContainer'
 import IntroductionContainer from '@/Containers/IntroductionContainer'
-
+import TransitionScene from '@/Components/Modal/TransitionScene'
 const Stack = createStackNavigator()
 
 
@@ -27,8 +27,10 @@ const ApplicationNavigator = () => {
             <StatusBar/>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator screenOptions={{ headerShown: false }}>
-                        <Stack.Screen  name="Intro" component={IntroductionContainer}/>
                         <Stack.Screen  name="Pet" component={PetContainer}/>
+                        <Stack.Screen name="Transition" component={TransitionScene}/>
+
+                        <Stack.Screen  name="Intro" component={IntroductionContainer}/>
                         <Stack.Screen  name="Parent" component={ParentContainer}/>
                         <Stack.Screen  name="Stats" component={StatsContainer}/>
                         <Stack.Screen  name="Adventure" component={AdventureContainer}/>
