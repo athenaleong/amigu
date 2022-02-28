@@ -99,7 +99,7 @@ const IntroductionContainer = () => {
                 }
                 return <DialogueView chat={chat} petType={imgArray[petType]} onPress={dialogueOnPress} backgroundImage={bgArray[bg]}></DialogueView>
             case 'video':
-                return <VideoView onPress={nextOnPress} source={require('/Assets/video/bbc.mp4')}></VideoView>
+                return <VideoView onPress={nextOnPress} source={require('/Assets/video/bbc-compressed.mp4')}></VideoView>
             
             case 'experience':
                 return <ExperienceView onPress={nextOnPress}/>

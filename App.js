@@ -72,6 +72,7 @@ const [assetsLoaded, setAssetsLoaded] = useState(false);
       require('@/Assets/wave.gif'),
       require('@/Assets/background/arctic-background.jpeg'),
       require('@/Assets/still.png'),
+      require('/Assets/video/bbc-compressed.mp4'),
       'https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/turtle.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3R1cnRsZS5wbmciLCJpYXQiOjE2NDM4NjU3OTEsImV4cCI6MTk1OTIyNTc5MX0.aPT_2PB6a1Y5zxNjljD2MA51zH22fulz66M2ANG_23s',
       'https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/puffer.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3B1ZmZlci5wbmciLCJpYXQiOjE2NDM4NjU3NDQsImV4cCI6MTk1OTIyNTc0NH0.bUAjS51P9oMLYsURcfF0pzIGAZ7dvFjfj1rnsizO_ww',
       'https://fnnsvyluqwpbgqnpnvjz.supabase.in/storage/v1/object/sign/treasure/sea-animal-still/seal.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmVhc3VyZS9zZWEtYW5pbWFsLXN0aWxsL3NlYWwucG5nIiwiaWF0IjoxNjQzODY1NzQ5LCJleHAiOjE5NTkyMjU3NDl9.KKmWk2-FKIfBqos5uYeFPdRSS5aSGHidie9Hlu0HPPE',

@@ -6,7 +6,7 @@
         },
         {
             "frameType": "dialogue",
-            "chat": [". . .","HIIIII..", "You look really friendly. Would you like to be my friend?", "I would love to be your friend too! What’s your name?"],
+            "chat": [". . .","Hi.. This is my first time trying to make friends", "You look really friendly. Would you like to be my friend?", "I would love to be your friend too! What’s your name?"],
             "petType": ["7","7","6","2"],
             "bg": 2
         },
