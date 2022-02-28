@@ -36,7 +36,7 @@ const DialogueView = (props) => {
 
     useEffect(() => {
         //TODO: change this to false 
-        setTyped(true);   
+        setTyped(false);   
     },[chat])
 
     async function nextOnPress() {
